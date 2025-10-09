@@ -9,7 +9,7 @@ import '../Component/textField.dart';
 import '../Component/text_top.dart';
 import '../Component/validator.dart';
 import 'create_account.dart';
-import 'logIn_screen.dart';
+import 'login_screen.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});

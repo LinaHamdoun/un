@@ -10,7 +10,7 @@ class ContainerComponent extends StatelessWidget {
     required this.onTap,
   });
 
-static  double heightContainer = 50.h;
+  static double heightContainer = 50.h;
 
   double heightText = 20.sp;
 

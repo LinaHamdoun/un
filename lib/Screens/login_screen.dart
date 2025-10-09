@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:untitled/Pages/signUp_screen.dart';
+import 'package:untitled/Screens/signup_screen.dart';
 
 import '../Colors/colors_screens.dart';
 import '../Component/container.dart';
-import '../Component/dialog.dart';
 import '../Component/row_text.dart';
 import '../Component/textField.dart';
 import '../Component/text_top.dart';
 import '../Component/validator.dart';
 
 class LogIn extends StatefulWidget {
+  const LogIn({super.key});
+
   @override
   State<LogIn> createState() => _LogInState();
 }
@@ -58,6 +59,7 @@ class _LogInState extends State<LogIn> {
                   controller: emailController,
                   validator: (String? value) {
                     CustomValidators.email(value);
+                    return null;
                   },
                   text: 'البريد الالكتروني',
                   focusNode: focusNodes[0],
@@ -68,6 +70,7 @@ class _LogInState extends State<LogIn> {
                   controller: passwordController,
                   validator: (String? value) {
                     CustomValidators.password(value);
+                    return null;
                   },
                   text: 'كلمة المرور',
                   focusNode: focusNodes[1],

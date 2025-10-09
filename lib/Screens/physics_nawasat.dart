@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:untitled/Colors/colors_screens.dart';
-import 'package:untitled/Pages/home_screen.dart';
-import 'package:untitled/Pages/physics_nawasat.dart';
+import 'package:untitled/Screens/physics_screen.dart';
+import 'package:untitled/Screens/summaries_screen.dart';
+import 'package:untitled/Screens/videoList_page.dart';
 
 import '../Component/card_widget.dart';
 import '../Component/container_icon.dart';
 import '../Component/text_top.dart';
 
-class PhysicsScreen extends StatelessWidget {
-  const PhysicsScreen({super.key});
+class PhysicsNawasat extends StatelessWidget {
+  const PhysicsNawasat({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +39,7 @@ class PhysicsScreen extends StatelessWidget {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => Home(),
+                                    builder: (context) => PhysicsScreen(),
                                   ),
                                 );
                               },
@@ -60,7 +61,7 @@ class PhysicsScreen extends StatelessWidget {
                           ],
                         ),
                       ),
-                      TextTop(text: 'فيزياء', size: 23.sp),
+                      TextTop(text: 'فيزياء,نواسات', size: 23.sp),
                     ],
                   ),
                   SizedBox(height: 40.h),
@@ -72,35 +73,37 @@ class PhysicsScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           CardWidget(
-                            title: 'النواسات',
-                            subtitle: '10 دروس و 15 ملف',
+                            title: 'الفيديوهات',
+                            subtitle: '20 فيديو',
                             onTap: () {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => PhysicsNawasat(),
+                                  builder: (context) => VideoListPage(),
                                 ),
                               );
                             },
                           ),
                           CardWidget(
-                            title: 'نسبية',
-                            subtitle: '10 دروس و 15 ملف',
+                            title: 'الملخصات النوط',
+                            subtitle: '20 ملخص',
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => SummariesScreen(),
+                                ),
+                              );
+                            },
+                          ),
+                          CardWidget(
+                            title: 'الأسئلة و الاختبارات',
+                            subtitle: '20 دزوس',
                             onTap: () {},
                           ),
                           CardWidget(
-                            title: 'كيمياء',
-                            subtitle: '10 دروس و 15 ملف',
-                            onTap: () {},
-                          ),
-                          CardWidget(
-                            title: 'علوم',
-                            subtitle: '10 دروس و 15 ملف',
-                            onTap: () {},
-                          ),
-                          CardWidget(
-                            title: 'عربي',
-                            subtitle: '10 دروس و 15 ملف',
+                            title: 'المفضلة',
+                            subtitle: '20 سؤال',
                             onTap: () {},
                           ),
                         ],

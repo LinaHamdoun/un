@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:untitled/Pages/my_own.dart';
 
-import 'Pages/physics_screen.dart';
-import 'Pages/home_screen.dart';
+import 'Screens/home_screen.dart';
+
 
 void main() {
   runApp(App());
@@ -19,13 +18,15 @@ class App extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) {
-        return MaterialApp(
-          theme: ThemeData(fontFamily: 'Tajawal'),
-          debugShowCheckedModeBanner: false,
-          home: child,
+        return SafeArea(
+          child: MaterialApp(
+            theme: ThemeData(fontFamily: 'Tajawal'),
+            debugShowCheckedModeBanner: false,
+            home: child,
+          ),
         );
       },
-      child: Home(),
+      child: HomeScreen(), //lina
     );
   }
 }

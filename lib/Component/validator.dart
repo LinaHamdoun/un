@@ -1,6 +1,3 @@
-
-
-
 class CustomValidators {
   static String? required(String? value, {String? message}) {
     if (value == null || value.isEmpty) {

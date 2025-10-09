@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:untitled/Colors/colors_screens.dart';
-import 'package:untitled/Pages/home_screen.dart';
-import 'package:untitled/Pages/physics_nawasat.dart';
-import 'package:untitled/Pages/videoList_page.dart';
+import 'package:untitled/Screens/physics_nawasat.dart';
 
 import '../Component/card_widget.dart';
 import '../Component/container_icon.dart';
 import '../Component/text_top.dart';
+import 'home_screen.dart';
 
-class SummariesScreen extends StatelessWidget {
-  const SummariesScreen({super.key});
+class PhysicsScreen extends StatelessWidget {
+  const PhysicsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +38,7 @@ class SummariesScreen extends StatelessWidget {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => PhysicsNawasat(),
+                                    builder: (context) => HomeScreen(),
                                   ),
                                 );
                               },
@@ -61,7 +60,7 @@ class SummariesScreen extends StatelessWidget {
                           ],
                         ),
                       ),
-                      TextTop(text: '', size: 23.sp),
+                      TextTop(text: 'فيزياء', size: 23.sp),
                     ],
                   ),
                   SizedBox(height: 40.h),
@@ -73,69 +72,35 @@ class SummariesScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           CardWidget(
-                            title: 'ملخص قوانين الحركة',
-                            subtitle: '20 صفحة',
-                            image: 'assets/Logo/p.jpg',
-                            containerIcon: ContainerIcon(
-                              onTap: () {},
-                              valueRadius: 777.r,
-                              icon: Icon(Icons.play_arrow_outlined, size: 10.h),
-                              color: Colors.amber,
-                            ),
-
+                            title: 'النواسات',
+                            subtitle: '10 دروس و 15 ملف',
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => PhysicsNawasat(),
+                                ),
+                              );
+                            },
+                          ),
+                          CardWidget(
+                            title: 'نسبية',
+                            subtitle: '10 دروس و 15 ملف',
                             onTap: () {},
                           ),
                           CardWidget(
-                            title: 'ملخص قوانين الحركة',
-                            subtitle: '20 صفحة',
-                            image: 'assets/Logo/p.jpg',
-                            containerIcon: ContainerIcon(
-                              onTap: () {},
-                              valueRadius: 777.r,
-                              icon: Icon(Icons.play_arrow_outlined, size: 10.h),
-                              color: Colors.amber,
-                            ),
-
+                            title: 'كيمياء',
+                            subtitle: '10 دروس و 15 ملف',
                             onTap: () {},
                           ),
                           CardWidget(
-                            title: 'ملخص قوانين الحركة',
-                            subtitle: '20 صفحة',
-                            image: 'assets/Logo/p.jpg',
-                            containerIcon: ContainerIcon(
-                              onTap: () {},
-                              valueRadius: 777.r,
-                              icon: Icon(Icons.play_arrow_outlined, size: 10.h),
-                              color: Colors.amber,
-                            ),
-
+                            title: 'علوم',
+                            subtitle: '10 دروس و 15 ملف',
                             onTap: () {},
                           ),
                           CardWidget(
-                            title: 'ملخص قوانين الحركة',
-                            subtitle: '20 صفحة',
-                            image: 'assets/Logo/p.jpg',
-                            containerIcon: ContainerIcon(
-                              onTap: () {},
-                              valueRadius: 777.r,
-                              icon: Icon(Icons.play_arrow_outlined, size: 10.h),
-                              color: Colors.amber,
-                            ),
-
-                            onTap: () {},
-                          ),
-
-                          CardWidget(
-                            title: 'ملخص قوانين الحركة',
-                            subtitle: '20 صفحة',
-                            image: 'assets/Logo/p.jpg',
-                            containerIcon: ContainerIcon(
-                              onTap: () {},
-                              valueRadius: 777.r,
-                              icon: Icon(Icons.play_arrow_outlined, size: 10.h),
-                              color: Colors.amber,
-                            ),
-
+                            title: 'عربي',
+                            subtitle: '10 دروس و 15 ملف',
                             onTap: () {},
                           ),
                         ],

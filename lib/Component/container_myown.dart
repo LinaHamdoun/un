@@ -50,18 +50,15 @@ class TextAndIcon extends StatelessWidget {
     super.key,
     required this.onTap,
     required this.txt,
-     this.icon,
-    this.icon2
-
+    this.icon,
+    this.icon2,
   });
 
   final void Function()? onTap;
   final String txt;
 
-  final IconData ? icon;
-  final IconData ? icon2;
-
-
+  final IconData? icon;
+  final IconData? icon2;
 
   @override
   Widget build(BuildContext context) {
@@ -86,11 +83,11 @@ class TextAndIcon extends StatelessWidget {
     );
   }
 
-  Widget buildIcon(  ) {
-    if (icon == null)
-    { return FaIcon(icon2);}
-    else {
-
-  return  Icon(icon, size: 20.h, color: ColorsScreens.grey); }
+  Widget buildIcon() {
+    if (icon == null) {
+      return FaIcon(icon2);
+    } else {
+      return Icon(icon, size: 20.h, color: ColorsScreens.grey);
     }
+  }
 }

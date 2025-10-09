@@ -55,6 +55,7 @@ class _BarcodeScannerPageState extends State<BarcodeScannerPage> {
                   onDetect: (capture) {
                     final List<Barcode> barcodes = capture.barcodes;
                     if (barcodes.isNotEmpty) {
+                      controller.stop();
                       setState(() {
                         scannedCode = barcodes.first.rawValue;
                         textEditingController.text = scannedCode ?? '';
@@ -63,7 +64,7 @@ class _BarcodeScannerPageState extends State<BarcodeScannerPage> {
                   },
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: 60.h, left: 12.w, right: 12.w),
+                  padding: EdgeInsets.only(top: 20.h, left: 12.w, right: 12.w),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -71,7 +72,9 @@ class _BarcodeScannerPageState extends State<BarcodeScannerPage> {
                         onTap: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => Home()),
+                            MaterialPageRoute(
+                              builder: (context) => HomeScreen(),
+                            ),
                           );
                         },
                         valueRadius: 300.r,

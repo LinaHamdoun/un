@@ -1,8 +1,3 @@
-
-
-
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -14,14 +9,17 @@ class MyForm extends StatefulWidget {
 
 class _MyFormState extends State<MyForm> {
   late List<FocusNode> focusNodes = List.generate(6, (index) => FocusNode());
-  late List<TextEditingController> controllers = List.generate(6, (index) => TextEditingController());
+  late List<TextEditingController> controllers = List.generate(
+    6,
+    (index) => TextEditingController(),
+  );
 
-
-  void _onBackspace(KeyEvent event , int index )
-  {
-    if (event is KeyDownEvent && event.logicalKey ==LogicalKeyboardKey.backspace && controllers[index].text.isEmpty
-        && index>0){
-      FocusScope.of(context).requestFocus(focusNodes[index-1]);
+  void _onBackspace(KeyEvent event, int index) {
+    if (event is KeyDownEvent &&
+        event.logicalKey == LogicalKeyboardKey.backspace &&
+        controllers[index].text.isEmpty &&
+        index > 0) {
+      FocusScope.of(context).requestFocus(focusNodes[index - 1]);
     }
   }
 
@@ -41,20 +39,15 @@ class _MyFormState extends State<MyForm> {
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 2.w),
             child: Focus(
-              onKeyEvent: (node , event ){
+              onKeyEvent: (node, event) {
                 _onBackspace(event, index);
                 return KeyEventResult.ignored;
-
               },
               child: TextFormField(
-                validator: (value) {
-
-                },
+                validator: (value) {},
 
                 keyboardType: TextInputType.number,
-                inputFormatters: [
-                  FilteringTextInputFormatter.digitsOnly
-                ],
+                inputFormatters: [FilteringTextInputFormatter.digitsOnly],
 
                 controller: controllers[index],
                 focusNode: focusNodes[index],
@@ -63,12 +56,11 @@ class _MyFormState extends State<MyForm> {
                 maxLength: 1,
                 decoration: InputDecoration(
                   counterText: '',
-                  contentPadding: EdgeInsets.symmetric(vertical:15.h),
+                  contentPadding: EdgeInsets.symmetric(vertical: 15.h),
 
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(15.r),
-
-                  )
+                  ),
                 ),
                 onChanged: (value) {
                   if (value.isNotEmpty && index < 5) {
@@ -77,14 +69,8 @@ class _MyFormState extends State<MyForm> {
                   if (value.isEmpty && index > 0) {
                     focusNodes[index - 1].requestFocus();
                   }
-
-
                 },
-
-
-
-
-            ),
+              ),
             ),
           ),
         );
@@ -92,21 +78,10 @@ class _MyFormState extends State<MyForm> {
     );
   }
 
-
-
-
-
-
-
-
-
-
   @override
   void dispose() {
     for (var node in focusNodes) node.dispose();
     for (var controller in controllers) controller.dispose();
     super.dispose();
-    }
-
-
+  }
 }

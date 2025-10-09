@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:untitled/Colors/colors_screens.dart';
-import 'package:untitled/Pages/home_screen.dart';
-import 'package:untitled/Pages/physics_nawasat.dart';
-import 'package:untitled/Pages/summaries_screen.dart';
+import 'package:untitled/Screens/physics_nawasat.dart';
 
 import '../Component/card_widget.dart';
 import '../Component/container_icon.dart';

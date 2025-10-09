@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:untitled/Colors/colors_screens.dart';
-import 'package:untitled/Pages/home_screen.dart';
-import 'package:untitled/Pages/physics_screen.dart';
-import 'package:untitled/Pages/summaries_screen.dart';
-import 'package:untitled/Pages/videoList_page.dart';
 
 import '../Component/card_widget.dart';
 import '../Component/container_icon.dart';
 import '../Component/text_top.dart';
+import 'home_screen.dart';
 
-class PhysicsNawasat extends StatelessWidget {
-  const PhysicsNawasat({super.key});
+class MyLibrary extends StatelessWidget {
+  const MyLibrary({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +37,7 @@ class PhysicsNawasat extends StatelessWidget {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => PhysicsScreen(),
+                                    builder: (context) => HomeScreen(),
                                   ),
                                 );
                               },
@@ -49,20 +46,10 @@ class PhysicsNawasat extends StatelessWidget {
                               color: Colors.white,
                             ),
                             SizedBox(width: 10.w),
-
-                            ContainerIcon(
-                              onTap: () {},
-                              valueRadius: 12.r,
-                              icon: Icon(
-                                Icons.file_download_outlined,
-                                size: 25.h,
-                              ),
-                              color: Colors.white,
-                            ),
                           ],
                         ),
                       ),
-                      TextTop(text: 'فيزياء,نواسات', size: 23.sp),
+                      TextTop(text: 'مكتبتي', size: 23.sp),
                     ],
                   ),
                   SizedBox(height: 40.h),
@@ -74,37 +61,28 @@ class PhysicsNawasat extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           CardWidget(
-                            title: 'الفيديوهات',
-                            subtitle: '20 فيديو',
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => VideoListPage(),
-                                ),
-                              );
-                            },
-                          ),
-                          CardWidget(
-                            title: 'الملخصات النوط',
-                            subtitle: '20 ملخص',
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => SummariesScreen(),
-                                ),
-                              );
-                            },
-                          ),
-                          CardWidget(
-                            title: 'الأسئلة و الاختبارات',
-                            subtitle: '20 دزوس',
+                            title: 'فيزياء',
+                            subtitle: '10 دروس و 15 ملف',
                             onTap: () {},
                           ),
                           CardWidget(
-                            title: 'المفضلة',
-                            subtitle: '20 سؤال',
+                            title: 'فيزياء',
+                            subtitle: '10 دروس و 15 ملف',
+                            onTap: () {},
+                          ),
+                          CardWidget(
+                            title: 'فيزياء',
+                            subtitle: '10 دروس و 15 ملف',
+                            onTap: () {},
+                          ),
+                          CardWidget(
+                            title: 'فيزياء',
+                            subtitle: '10 دروس و 15 ملف',
+                            onTap: () {},
+                          ),
+                          CardWidget(
+                            title: 'فيزياء',
+                            subtitle: '10 دروس و 15 ملف',
                             onTap: () {},
                           ),
                         ],
