@@ -28,7 +28,7 @@ class App extends StatelessWidget {
           ),
         );
       },
-      child: ShowIcon() //lina
+      child: ShowIcons() //lina
     );
   }
 }

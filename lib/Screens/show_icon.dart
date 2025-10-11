@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class ShowIcon extends StatefulWidget {
-  const ShowIcon({super.key});
+class ShowIcons extends StatefulWidget {
+  const ShowIcons({super.key});
 
   @override
-  State<ShowIcon> createState() => _ShowIconState();
+  State<ShowIcons> createState() => _ShowIconsState();
 }
 
-class _ShowIconState extends State<ShowIcon> {
+class _ShowIconsState extends State<ShowIcons> {
   bool isShow = false;
 
   void toggleIcons() {
