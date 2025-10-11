@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:untitled/Colors/colors_screens.dart';
 
 class ShowIcon extends StatefulWidget {
   const ShowIcon({super.key});
@@ -9,143 +8,152 @@ class ShowIcon extends StatefulWidget {
   State<ShowIcon> createState() => _ShowIconState();
 }
 
-class _ShowIconState extends State<ShowIcon>
-    with SingleTickerProviderStateMixin {
+class _ShowIconState extends State<ShowIcon> {
   bool isShow = false;
-  bool click = false;
-  late AnimationController _controller;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 400),
-    );
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
 
   void toggleIcons() {
-    if (isShow) {
-      _controller.reverse();
-    } else {
-      _controller.forward();
-    }
     setState(() {
       isShow = !isShow;
     });
   }
 
-  Widget _buildAnimatedIcon(
-    String image,
-    double offsetX,
-    double offsetY,
-    VoidCallback onTap,
-  ) {
-    return AnimatedBuilder(
-      animation: _controller,
-      builder: (context, child) {
-        final progress = Curves.easeOut.transform(_controller.value);
-        return Transform.translate(
-          offset: Offset(offsetX * progress, -offsetY * progress),
-          child: Opacity(
-            opacity: progress,
-            child: Visibility(
-              visible: progress > 0.1,
-              child: FloatingActionButton(
-                heroTag: image,
-                mini: true,
-                elevation: 2,
-                backgroundColor: Colors.white,
-                shape: const CircleBorder(),
-                onPressed: onTap,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: SvgPicture.asset(image, height: 30),
-                ),
-              ),
-            ),
-          ),
-        );
-      },
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
+    const double gapY1 = 60;
+    const double gapY2 = 115;
+    const double gapY3 = 170;
+    const double gapX1 = 70;
+    const double gapX2 = 135;
+
+    const animationDuration = Duration(milliseconds: 400);
+    const animationCurve = Curves.easeInOutCubic;
+
     return Scaffold(
       backgroundColor: Colors.teal,
       body: Stack(
         children: [
-          Align(
-            alignment: Alignment.bottomRight,
-            child: Column(
+          Positioned(
+            right: 20,
+            bottom: 20,
+            width: 300,
+            height: 300,
+            child: Stack(
+              clipBehavior: Clip.none,
               children: [
-                if (click) const Text('nggnm mmbg'),
-                const Spacer(),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 20, right: 20),
-                  child: Stack(
-                    alignment: Alignment.bottomRight,
-                    clipBehavior: Clip.none,
-                    children: [
-                      _buildAnimatedIcon(
-                        'assets/Logo/sent_icon.svg',
-                        -110,
-                        5,
-                        () {
-                          debugPrint('sent icon pressed');
-                        },
+                AnimatedPositioned(
+                  duration: animationDuration,
+                  curve: animationCurve,
+                  right: 0,
+                  bottom: isShow ? gapY1 : 0,
+                  child: AnimatedOpacity(
+                    opacity: isShow ? 1 : 0,
+                    duration: animationDuration,
+                    curve: animationCurve,
+                    child: FloatingActionButton(
+                      heroTag: 'check',
+                      mini: true,
+                      backgroundColor: Colors.white,
+                      onPressed: () => debugPrint('✅ check pressed'),
+                      child:
+                      SvgPicture.asset('assets/Logo/checke_icon.svg', height: 24),
+                    ),
+                  ),
+                ),
+                AnimatedPositioned(
+                  duration: animationDuration,
+                  curve: animationCurve,
+                  right: 0,
+                  bottom: isShow ? gapY2 : 0,
+                  child: AnimatedOpacity(
+                    opacity: isShow ? 1 : 0,
+                    duration: animationDuration,
+                    curve: animationCurve,
+                    child: FloatingActionButton(
+                      heroTag: 'delete',
+                      mini: true,
+                      backgroundColor: Colors.white,
+                      onPressed: () => debugPrint('🗑 delete pressed'),
+                      child:
+                      SvgPicture.asset('assets/Logo/delete_icon.svg', height: 24),
+                    ),
+                  ),
+                ),
+                AnimatedPositioned(
+                  duration: animationDuration,
+                  curve: animationCurve,
+                  right: 0,
+                  bottom: isShow ? gapY3 : 0,
+                  child: AnimatedOpacity(
+                    opacity: isShow ? 1 : 0,
+                    duration: animationDuration,
+                    curve: animationCurve,
+                    child: FloatingActionButton(
+                      heroTag: 'timer',
+                      mini: true,
+                      backgroundColor: Colors.white,
+                      onPressed: () => debugPrint('⏱ timer pressed'),
+                      child:
+                      SvgPicture.asset('assets/Logo/timer_icon.svg', height: 24),
+                    ),
+                  ),
+                ),
+
+                AnimatedPositioned(
+                  duration: animationDuration,
+                  curve: animationCurve,
+                  right: isShow ? gapX1 : 0,
+                  bottom: 0,
+                  child: AnimatedOpacity(
+                    opacity: isShow ? 1 : 0,
+                    duration: animationDuration,
+                    curve: animationCurve,
+                    child: FloatingActionButton(
+                      heroTag: 'seq',
+                      mini: true,
+                      backgroundColor: Colors.white,
+                      onPressed: () => debugPrint('🔁 sequence pressed'),
+                      child: SvgPicture.asset(
+                          'assets/Logo/sequer_checkeIcon.svg',
+                          height: 24),
+                    ),
+                  ),
+                ),
+                AnimatedPositioned(
+                  duration: animationDuration,
+                  curve: animationCurve,
+                  right: isShow ? gapX2 : 0,
+                  bottom: 0,
+                  child: AnimatedOpacity(
+                    opacity: isShow ? 1 : 0,
+                    duration: animationDuration,
+                    curve: animationCurve,
+                    child: FloatingActionButton(
+                      heroTag: 'sent',
+                      mini: true,
+                      backgroundColor: Colors.white,
+                      onPressed: () => debugPrint('📤 sent pressed'),
+                      child:
+                      SvgPicture.asset('assets/Logo/sent_icon.svg', height: 24),
+                    ),
+                  ),
+                ),
+
+                Positioned(
+                  right: 0,
+                  bottom: 0,
+                  child: FloatingActionButton(
+                    heroTag: 'main',
+                    backgroundColor: Colors.white,
+                    onPressed: toggleIcons,
+                    child: AnimatedSwitcher(
+                      duration: const Duration(milliseconds: 200),
+                      transitionBuilder: (child, anim) =>
+                          RotationTransition(turns: anim, child: child),
+                      child: Icon(
+                        isShow ? Icons.close : Icons.dehaze_rounded,
+                        key: ValueKey(isShow),
                       ),
-                      _buildAnimatedIcon(
-                        'assets/Logo/sequer_checkeIcon.svg',
-                        -60,
-                        5,
-                        () {
-                          debugPrint('sequer pressed');
-                        },
-                      ),
-                      _buildAnimatedIcon(
-                        'assets/Logo/timer_icon.svg',
-                        0,
-                        60,
-                        () {
-                          debugPrint('timer pressed');
-                        },
-                      ),
-                      _buildAnimatedIcon(
-                        'assets/Logo/delete_icon.svg',
-                        0,
-                        105,
-                        () {
-                          debugPrint('delete pressed');
-                        },
-                      ),
-                      _buildAnimatedIcon(
-                        'assets/Logo/checke_icon.svg', 0, 150, () {},
-                      ),
-                      FloatingActionButton(
-                        backgroundColor: Colors.white,
-                        foregroundColor: ColorsScreens.amber,
-                        elevation: 3,
-                        onPressed: toggleIcons,
-                        shape: const CircleBorder(),
-                        child: AnimatedSwitcher(
-                          duration: const Duration(milliseconds: 200),
-                          transitionBuilder: (child, anim) =>
-                              RotationTransition(turns: anim, child: child),
-                          child: Icon(
-                            isShow ? Icons.close : Icons.dehaze_rounded,
-                            key: ValueKey(isShow),
-                          ),
-                        ),
-                      ),
-                    ],
+                    ),
                   ),
                 ),
               ],
