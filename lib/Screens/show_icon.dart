@@ -53,7 +53,7 @@ class _ShowIconsState extends State<ShowIcons> {
                       heroTag: 'check',
                       mini: true,
                       backgroundColor: Colors.white,
-                      onPressed: () => debugPrint('✅ check pressed'),
+                      onPressed: () => debugPrint(' check pressed'),
                       child:
                       SvgPicture.asset('assets/Logo/checke_icon.svg', height: 24),
                     ),
@@ -72,7 +72,7 @@ class _ShowIconsState extends State<ShowIcons> {
                       heroTag: 'delete',
                       mini: true,
                       backgroundColor: Colors.white,
-                      onPressed: () => debugPrint('🗑 delete pressed'),
+                      onPressed: () => debugPrint('delete pressed'),
                       child:
                       SvgPicture.asset('assets/Logo/delete_icon.svg', height: 24),
                     ),
@@ -91,7 +91,7 @@ class _ShowIconsState extends State<ShowIcons> {
                       heroTag: 'timer',
                       mini: true,
                       backgroundColor: Colors.white,
-                      onPressed: () => debugPrint('⏱ timer pressed'),
+                      onPressed: () => debugPrint(' timer pressed'),
                       child:
                       SvgPicture.asset('assets/Logo/timer_icon.svg', height: 24),
                     ),
@@ -111,7 +111,7 @@ class _ShowIconsState extends State<ShowIcons> {
                       heroTag: 'seq',
                       mini: true,
                       backgroundColor: Colors.white,
-                      onPressed: () => debugPrint('🔁 sequence pressed'),
+                      onPressed: () => debugPrint(' sequence pressed'),
                       child: SvgPicture.asset(
                           'assets/Logo/sequer_checkeIcon.svg',
                           height: 24),
@@ -131,7 +131,7 @@ class _ShowIconsState extends State<ShowIcons> {
                       heroTag: 'sent',
                       mini: true,
                       backgroundColor: Colors.white,
-                      onPressed: () => debugPrint('📤 sent pressed'),
+                      onPressed: () => debugPrint(' sent pressed'),
                       child:
                       SvgPicture.asset('assets/Logo/sent_icon.svg', height: 24),
                     ),
