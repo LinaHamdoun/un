@@ -1,9 +1,8 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'Screens/home_screen.dart';
-import 'Screens/show_icon.dart';
-
+import 'Screens/test_screen.dart';
 
 void main() {
   runApp(App());
@@ -27,7 +26,7 @@ class App extends StatelessWidget {
           ),
         );
       },
-      child: ShowIcons() //lina
+      child: TestScreen()
     );
   }
 }

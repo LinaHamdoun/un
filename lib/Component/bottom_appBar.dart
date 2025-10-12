@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../Colors/colors_screens.dart';
-import 'icon.dart';
+import 'click_column.dart';
 
 class BottomApp extends StatelessWidget {
   const BottomApp({

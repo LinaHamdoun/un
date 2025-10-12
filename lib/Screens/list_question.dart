@@ -5,14 +5,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:untitled/Component/animation_icon.dart';
 
-class ShowIcons extends StatefulWidget {
-  const ShowIcons({super.key});
+class Questions extends StatefulWidget {
+  const Questions({super.key});
 
   @override
-  State<ShowIcons> createState() => _ShowIconsState();
+  State<Questions> createState() => _QuestionsState();
 }
 
-class _ShowIconsState extends State<ShowIcons> {
+class _QuestionsState extends State<Questions> {
   bool isShow = false;
 
   void toggleIcons() {
@@ -96,37 +96,37 @@ class _ShowIconsState extends State<ShowIcons> {
             child: isClosed
                 ? SizedBox()
                 : Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 15.w),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        IconButton(
-                          onPressed: startTimer,
-                          icon: SvgPicture.asset('assets/Logo/play_icon.svg'),
-                        ),
-                        Spacer(flex: 25),
+              padding: EdgeInsets.symmetric(horizontal: 15.w),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  IconButton(
+                    onPressed: startTimer,
+                    icon: SvgPicture.asset('assets/Logo/play_icon.svg'),
+                  ),
+                  Spacer(flex: 25),
 
-                        Text(
-                          formatTime(seconds),
-                          style: const TextStyle(
-                            fontSize: 35,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                        Spacer(flex: 3),
-
-                        IconButton(
-                          onPressed: resetTimer,
-                          icon: Icon(Icons.replay, size: 30),
-                        ),
-
-                        IconButton(
-                          onPressed: closeTimer,
-                          icon: Icon(Icons.close),
-                        ),
-                      ],
+                  Text(
+                    formatTime(seconds),
+                    style: const TextStyle(
+                      fontSize: 35,
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
+                  Spacer(flex: 3),
+
+                  IconButton(
+                    onPressed: resetTimer,
+                    icon: Icon(Icons.replay, size: 30),
+                  ),
+
+                  IconButton(
+                    onPressed: closeTimer,
+                    icon: Icon(Icons.close),
+                  ),
+                ],
+              ),
+            ),
           ),
 
           Positioned(
