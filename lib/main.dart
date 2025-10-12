@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'Component/card_question.dart';
 import 'Screens/test_screen.dart';
 
 void main() {
@@ -26,7 +27,7 @@ class App extends StatelessWidget {
           ),
         );
       },
-      child: TestScreen()
+      child: CardQuestion()
     );
   }
 }
