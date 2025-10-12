@@ -21,10 +21,10 @@ class _ShowIconsState extends State<ShowIcons> {
     });
   }
 
+  Timer? timer;
 
-  Timer ? timer ;
   int seconds = 0;
-  bool isClosed = false ;
+  bool isClosed = false;
 
   void startTimer() {
     timer?.cancel();
@@ -48,6 +48,7 @@ class _ShowIconsState extends State<ShowIcons> {
       isClosed = true;
     });
   }
+
   void showTimer() {
     timer?.cancel();
     setState(() {
@@ -55,15 +56,12 @@ class _ShowIconsState extends State<ShowIcons> {
       isClosed = false;
     });
   }
+
   @override
   void initState() {
     super.initState();
     isClosed = true;
     seconds = 0;
-
-
-
-
   }
 
   String formatTime(int totalSeconds) {
@@ -82,7 +80,6 @@ class _ShowIconsState extends State<ShowIcons> {
   }
 
   @override
-
   Widget build(BuildContext context) {
     const double gapY1 = 58;
     const double gapY2 = 103;
@@ -94,40 +91,42 @@ class _ShowIconsState extends State<ShowIcons> {
       backgroundColor: Colors.teal,
       body: Stack(
         children: [
-
           Align(
             alignment: Alignment.topCenter,
             child: isClosed
                 ? SizedBox()
                 : Padding(
-              padding: EdgeInsets.symmetric(horizontal: 15.w),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  IconButton(
-                    onPressed: startTimer,
-                    icon: SvgPicture.asset('assets/Logo/play_icon.svg'),
-                  ),
-                  Spacer(flex: 25),
+                    padding: EdgeInsets.symmetric(horizontal: 15.w),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        IconButton(
+                          onPressed: startTimer,
+                          icon: SvgPicture.asset('assets/Logo/play_icon.svg'),
+                        ),
+                        Spacer(flex: 25),
 
-                  Text(
-                    formatTime(seconds),
-                    style: const TextStyle(
-                      fontSize: 35,
-                      fontWeight: FontWeight.w500,
+                        Text(
+                          formatTime(seconds),
+                          style: const TextStyle(
+                            fontSize: 35,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        Spacer(flex: 3),
+
+                        IconButton(
+                          onPressed: resetTimer,
+                          icon: Icon(Icons.replay, size: 30),
+                        ),
+
+                        IconButton(
+                          onPressed: closeTimer,
+                          icon: Icon(Icons.close),
+                        ),
+                      ],
                     ),
                   ),
-                  Spacer(flex: 3),
-
-                  IconButton(
-                    onPressed: resetTimer,
-                    icon: Icon(Icons.replay, size: 30),
-                  ),
-
-                  IconButton(onPressed: closeTimer, icon: Icon(Icons.close)),
-                ],
-              ),
-            ),
           ),
 
           Positioned(
@@ -138,7 +137,6 @@ class _ShowIconsState extends State<ShowIcons> {
             child: Stack(
               clipBehavior: Clip.none,
               children: [
-
                 AnimationIcon(
                   right: 0,
                   bottom: isShow ? gapY1 : 0,
@@ -161,9 +159,7 @@ class _ShowIconsState extends State<ShowIcons> {
                   right: 0,
                   bottom: isShow ? gapY3 : 0,
                   heroTag: 'timer',
-                  onPressed:     showTimer
-
-            ,
+                  onPressed: showTimer,
                   image: 'assets/Logo/timer_icon.svg',
                   isShow: isShow,
                 ),
@@ -171,7 +167,7 @@ class _ShowIconsState extends State<ShowIcons> {
                   right: isShow ? gapX1 : 0,
                   bottom: 0,
                   heroTag: 'seq',
-                  onPressed: (){},
+                  onPressed: () {},
                   image: 'assets/Logo/sequer_checkeIcon.svg',
                   isShow: isShow,
                 ),
