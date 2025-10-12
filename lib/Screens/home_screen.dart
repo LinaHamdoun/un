@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:untitled/Colors/colors_screens.dart';
-import 'package:untitled/Screens/personal_screen.dart';
+import 'package:untitled/Screens/content_personal.dart';
 
 import '../Component/bottom_appBar.dart';
 import '../Component/floating_action_button.dart';
@@ -16,7 +16,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int currentIndex = 0;
-  List<Widget> screens = [ContentHome(), PersonalScreen()];
+  List<Widget> screens = [ContentHome(), ContentPersonal()];
 
   void onItemTapped(int index) {
     setState(() {

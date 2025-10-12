@@ -5,8 +5,8 @@ import '../Component/container_myown.dart';
 import '../Component/text_top.dart';
 import 'my_library.dart';
 
-class PersonalScreen extends StatelessWidget {
-  const PersonalScreen({super.key});
+class ContentPersonal extends StatelessWidget {
+  const ContentPersonal({super.key});
 
   @override
   Widget build(BuildContext context) {
