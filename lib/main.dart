@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'Screens/home_screen.dart';
 import 'Screens/show_icon.dart';
-import 'Screens/timer.dart';
 
 
 void main() {
