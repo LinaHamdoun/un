@@ -64,11 +64,9 @@ class TestScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           CardTest(txt1: 'دورة 2025', txt2: '20 سؤال', txt3: 'بدء الحل', onTap: () {  },),
-
                           CardTest(txt1: 'دورة 2025', txt2: '20 سؤال', txt3: 'بدء الحل', onTap: () {  },),
                           CardTest(txt1: 'دورة 2025', txt2: '20 سؤال', txt3: 'بدء الحل', onTap: () {  },),
                           CardTest(txt1: 'دورة 2025', txt2: '20 سؤال', txt3: 'بدء الحل', onTap: () {  },),
-
                         ],
                       ),
                     ),

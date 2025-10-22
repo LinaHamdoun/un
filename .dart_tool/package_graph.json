@@ -12,7 +12,8 @@
         "flutter_screenutil",
         "flutter_svg",
         "font_awesome_flutter",
-        "mobile_scanner"
+        "mobile_scanner",
+        "reactive_forms"
       ],
       "devDependencies": [
         "flutter_lints",
@@ -42,6 +43,15 @@
         "stream_channel",
         "test_api",
         "vector_math"
+      ]
+    },
+    {
+      "name": "reactive_forms",
+      "version": "18.1.1",
+      "dependencies": [
+        "flutter",
+        "flutter_localizations",
+        "intl"
       ]
     },
     {
@@ -185,6 +195,24 @@
         "stream_channel",
         "string_scanner",
         "term_glyph"
+      ]
+    },
+    {
+      "name": "flutter_localizations",
+      "version": "0.0.0",
+      "dependencies": [
+        "flutter",
+        "intl",
+        "path"
+      ]
+    },
+    {
+      "name": "intl",
+      "version": "0.20.2",
+      "dependencies": [
+        "clock",
+        "meta",
+        "path"
       ]
     },
     {

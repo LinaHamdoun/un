@@ -1,8 +1,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:untitled/Component/reactive_radio.dart';
 
 import 'Component/card_question.dart';
+import 'Screens/content_list_question.dart';
 import 'Screens/test_screen.dart';
 
 void main() {
@@ -25,9 +27,9 @@ class App extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             home: child,
           ),
+
         );
-      },
-      child: CardQuestion()
+      }, child:ContentListQuestion()
     );
   }
 }
