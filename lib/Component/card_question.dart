@@ -22,11 +22,11 @@ class CardQuestion extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+      margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
       decoration: BoxDecoration(
         border: Border.all(color: Colors.grey),
         borderRadius: BorderRadius.circular(10),
-        color: Color(0xff262C37),
+        color: Colors.white70,
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -34,7 +34,9 @@ class CardQuestion extends StatelessWidget {
         children: [
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: [Star(), radioFormExample],
+            mainAxisSize: MainAxisSize.min,
+
+            children: [Star(),Spacer(flex: 1,), radioFormExample],
           ),
 
           Text('$index'),
