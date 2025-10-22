@@ -2,96 +2,88 @@ import 'package:flutter/material.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 import '../models/question_model.dart';
+import 'list_question_com.dart';
 
-
-
-class RadioFormExample extends StatelessWidget {
-  final  QuestionModel questionModel ;
+class RadioFormExample extends StatefulWidget {
+  final QuestionModel questionModel;
 
   const RadioFormExample({super.key, required this.questionModel});
 
-  FormGroup buildForm() => FormGroup( {
+  @override
+  State<RadioFormExample> createState() => _RadioFormExampleState();
+}
 
-    questionModel.labelQuestion :  FormControl<String>(
-      value: null,
-    )
+class _RadioFormExampleState extends State<RadioFormExample> {
+  late FormGroup form;
+  String _selectedValue = '';
 
+  @override
+  void initState() {
+    super.initState();
+    form = buildForm();
+
+    form.control(widget.questionModel.labelQuestion).valueChanges.listen((
+      value,
+    ) {
+      if (value != null) {
+        setState(() {
+          _selectedValue = value;
+        });
+        print('$value');
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    form.dispose();
+    super.dispose();
+  }
+
+  FormGroup buildForm() => FormGroup({
+    widget.questionModel.labelQuestion: FormControl<String>(value: null),
   });
-
-
-
 
   @override
   Widget build(BuildContext context) {
-
-    final form = buildForm();
-
-return  ReactiveForm(
-        formGroup: form,
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child:
-          Directionality(
-            
-            textDirection: TextDirection.rtl,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text( questionModel.questionTxt
-                  ,
-                  style: const TextStyle(color: Colors.amber, fontSize: 20),
-                ),
-
-            
-                SizedBox(
-                  width: 200,
-
-                  child: ReactiveRadioListTile<String>(
-                    formControlName: questionModel.labelQuestion,
-                    title:  Text(questionModel.txt1),
-                    value: questionModel.txt1,
-                  ),
-                ),
-                SizedBox(
-                  width: 200,
-            
-                  child: ReactiveRadioListTile<String>(
-                    formControlName: questionModel.labelQuestion,
-                    title:  Text(questionModel.txt2),
-                    value: questionModel.txt2,
-                  ),
-                ),
-                SizedBox(
-                  width: 200,
-            
-                  child: ReactiveRadioListTile<String>(
-                    formControlName: questionModel.labelQuestion,
-                    title:  Text(questionModel.txt3),
-                    value: questionModel.txt3,
-                  ),
-                ),
-                SizedBox(
-                  width: 200,
-            
-                  child: ReactiveRadioListTile<String>(
-                    formControlName: questionModel.labelQuestion,
-                    title:  Text(questionModel.txt4),
-                    value: questionModel.txt4,
-                  ),
-                ),
-            
-            
-            
-              ],
+    return ReactiveForm(
+      formGroup: form,
+      child: Directionality(
+        textDirection: TextDirection.rtl,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              widget.questionModel.questionTxt,
+              style: const TextStyle(color: Colors.amber, fontSize: 20),
             ),
-          ),
+
+            const SizedBox(height: 16),
+
+            _buildRadioOption(widget.questionModel.txt1),
+            _buildRadioOption(widget.questionModel.txt2),
+            _buildRadioOption(widget.questionModel.txt3),
+            _buildRadioOption(widget.questionModel.txt4),
+          ],
         ),
-      );
+      ),
+    );
+  }
+
+  Widget _buildRadioOption(String value) {
+    return SizedBox(
+      width: 200,
+      child: ReactiveRadioListTile<String>(
+        formControlName: widget.questionModel.labelQuestion,
+        title: Text(value),
+        value: value,
+      ),
+    );
+  }
+
+  String getSelectedValue() {
+    if (_selectedValue.isNotEmpty)
+   { answerUser.add(_selectedValue);}
+    return _selectedValue;
   }
 }
-
-
-
-
-
-
