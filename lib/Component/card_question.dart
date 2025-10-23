@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:untitled/Component/reactive_radio.dart';
 import 'package:untitled/Component/star.dart';
 
-import '../models/question_model.dart';
-import 'list_question_com.dart';
 
 class CardQuestion extends StatelessWidget {
   final int numberItem;
@@ -11,12 +9,18 @@ class CardQuestion extends StatelessWidget {
   final int index;
 
   final RadioFormExample radioFormExample;
+ final bool click ;
+  final VoidCallback? onFavoriteTap;
+
 
   const CardQuestion({
     super.key,
     required this.index,
     required this.numberItem,
     required this.radioFormExample,
+    required this.click,
+    this.onFavoriteTap,
+
   });
 
   @override
@@ -36,13 +40,24 @@ class CardQuestion extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
 
-            children: [Star(),Spacer(flex: 1,), radioFormExample],
+            children: [Star(clickStar: click, onTap: onFavoriteTap,),Spacer(flex: 1,), radioFormExample],
           ),
 
-          Text('$index'),
-          Text('$numberItem'),
+          Text('السؤال رقم ${index + 1} من $numberItem'),
         ],
       ),
     );
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+

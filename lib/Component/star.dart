@@ -1,47 +1,51 @@
-
-
-
 import 'package:flutter/material.dart';
 
 class Star extends StatefulWidget {
-  const Star({super.key});
+  final bool clickStar;
+  final VoidCallback? onTap;
+
+  const Star({
+    super.key,
+    required this.clickStar,
+    this.onTap,
+  });
 
   @override
   State<Star> createState() => _StarState();
 }
 
 class _StarState extends State<Star> {
-  bool clickStar = false ;
+  late bool isClicked;
+
+  @override
+  void initState() {
+    super.initState();
+    isClicked = widget.clickStar;
+  }
+
+  void toggleStar() {
+    setState(() {
+      isClicked = !isClicked;
+    });
+
+    widget.onTap?.call();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return                 clickStar
-        ? IconButton(
-      onPressed: () {
-        setState(() {
-          clickStar = false;
-        });
-      },
-      icon: Icon(
-        Icons.star_outlined,
-        color: Colors.amber,
-        size: 35,
-      ),
-    )
-        : IconButton(
-      onPressed: () {
-        setState(() {
-          clickStar = true;
-        });
-      },
-      icon: Icon(
-        Icons.star_border,
-        color: Colors.amber,
-        size: 35,
+    return IconButton(
+      onPressed: toggleStar,
+      icon: AnimatedSwitcher(
+        duration: const Duration(milliseconds: 300),
+        transitionBuilder: (child, anim) =>
+            ScaleTransition(scale: anim, child: child),
+        child: Icon(
+          key: ValueKey(isClicked),
+          isClicked ? Icons.star : Icons.star_border,
+          color: Colors.amber,
+          size: 30,
+        ),
       ),
     );
-
-
-
-
   }
 }
