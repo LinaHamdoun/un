@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/Component/reactive_radio.dart';
-import 'package:untitled/Component/card_question.dart';
-import 'package:untitled/Component/list_question_com.dart';
-import 'package:untitled/Screens/faivorate_questions.dart';
-import 'package:untitled/models/question_model.dart';
+import '../Component/card_question.dart';
+import '../Component/list_question_com.dart';
+import '../Component/reactive_radio.dart';
+import 'faivorate_questions.dart';
 
 class ContentListQuestion extends StatefulWidget {
   const ContentListQuestion({super.key});
@@ -13,50 +12,62 @@ class ContentListQuestion extends StatefulWidget {
 }
 
 class _ContentListQuestionState extends State<ContentListQuestion> {
-  final List<QuestionModel> favoriteList = [];
 
-  void toggleFavorite(QuestionModel question) {
-    setState(() {
-      if (favoriteList.contains(question)) {
-        favoriteList.remove(question);
-      } else {
-        favoriteList.add(question);
-      }
-    });
-  }
+  void refresh() => setState(() {});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("قائمة الأسئلة")),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) =>
-                  FavoriteQuestions(favoriteQuestions: favoriteList),
-            ),
-          );
-        },
-        child: const Icon(Icons.favorite),
+      appBar: AppBar(
+        title: const Text("الأسئلة"),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.star, color: Colors.amber),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const FavoriteQuestions()),
+              ).then((_) => setState(() {}));
+            },
+          ),
+        ],
       ),
       body: ListView.builder(
         itemCount: listQuestion.length,
         itemBuilder: (context, index) {
-          final question = listQuestion[index];
-          final isFavorite = favoriteList.contains(question);
+          bool isFavorite = FavoriteManager.isFavorite(index);
 
           return CardQuestion(
             index: index,
             numberItem: listQuestion.length,
-            radioFormExample:
-            RadioFormExample(questionModel: listQuestion[index]),
+            radioFormExample: RadioFormExample(
+              questionModel: listQuestion[index],
+            ),
             click: isFavorite,
-            onFavoriteTap: () => toggleFavorite(question),
+            onStarToggle: () {
+              FavoriteManager.toggleFavorite(index);
+              refresh();
+            },
           );
         },
       ),
     );
   }
 }
+
+class FavoriteManager {
+  static final List<int> favoriteIndexes = [];
+
+  static void toggleFavorite(int index) {
+    if (favoriteIndexes.contains(index)) {
+      favoriteIndexes.remove(index);
+    } else {
+      favoriteIndexes.add(index);
+    }
+  }
+
+  static bool isFavorite(int index) {
+    return favoriteIndexes.contains(index);
+  }
+}
+

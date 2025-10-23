@@ -1,31 +1,43 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/Component/card_question.dart';
-import 'package:untitled/Component/reactive_radio.dart';
-import 'package:untitled/models/question_model.dart';
+import '../Component/card_question.dart';
+import '../Component/list_question_com.dart';
+import '../Component/reactive_radio.dart';
+import 'content_list_question.dart';
 
-class FavoriteQuestions extends StatelessWidget {
-  const FavoriteQuestions({super.key, required this.favoriteQuestions});
+class FavoriteQuestions extends StatefulWidget {
+  const FavoriteQuestions({super.key});
 
-  final List<QuestionModel> favoriteQuestions;
+  @override
+  State<FavoriteQuestions> createState() => _FavoriteQuestionsState();
+}
+
+class _FavoriteQuestionsState extends State<FavoriteQuestions> {
+
+  void refresh() => setState(() {});
 
   @override
   Widget build(BuildContext context) {
+    final favorites = FavoriteManager.favoriteIndexes;
+
     return Scaffold(
       appBar: AppBar(title: const Text("الأسئلة المفضلة")),
-      body: favoriteQuestions.isEmpty
-          ? const Center(child: Text("لا توجد أسئلة مفضلة بعد "))
-          : ListView.builder(
-        itemCount: favoriteQuestions.length,
-        itemBuilder: (context, index) {
-          final question = favoriteQuestions[index];
+      body: favorites.isEmpty
+          ? const Center(child: Text("لا توجد أسئلة مفضلة بعد"))
+          : ListView(
+        children: favorites.map((index) {
           return CardQuestion(
             index: index,
-            numberItem: favoriteQuestions.length,
-            radioFormExample:
-            RadioFormExample(questionModel: question),
+            numberItem: listQuestion.length,
+            radioFormExample: RadioFormExample(
+              questionModel: listQuestion[index],
+            ),
             click: true,
+            onStarToggle: () {
+              FavoriteManager.toggleFavorite(index);
+              refresh();
+            },
           );
-        },
+        }).toList(),
       ),
     );
   }
