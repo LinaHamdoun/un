@@ -7,6 +7,7 @@ import 'package:untitled/Screens/summaries_screen.dart';
 import '../Component/card_test.dart';
 import '../Component/card_widget.dart';
 import '../Component/container_icon.dart';
+import '../Component/list_question_com.dart';
 import '../Component/text_top.dart';
 
 class TestScreen extends StatelessWidget {
@@ -39,7 +40,7 @@ class TestScreen extends StatelessWidget {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) =>SummariesScreen (),
+                                    builder: (context) => SummariesScreen(),
                                   ),
                                 );
                               },
@@ -48,7 +49,6 @@ class TestScreen extends StatelessWidget {
                               color: Colors.white,
                             ),
                             SizedBox(width: 10.w),
-
                           ],
                         ),
                       ),
@@ -63,10 +63,30 @@ class TestScreen extends StatelessWidget {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          CardTest(txt1: 'دورة 2025', txt2: '20 سؤال', txt3: 'بدء الحل', onTap: () {  },),
-                          CardTest(txt1: 'دورة 2025', txt2: '20 سؤال', txt3: 'بدء الحل', onTap: () {  },),
-                          CardTest(txt1: 'دورة 2025', txt2: '20 سؤال', txt3: 'بدء الحل', onTap: () {  },),
-                          CardTest(txt1: 'دورة 2025', txt2: '20 سؤال', txt3: 'بدء الحل', onTap: () {  },),
+                          CardTest(
+                            txt1: 'دورة 2025',
+                            txt2: '20 سؤال',
+                            txt3: 'بدء الحل',
+                            onTap: () {},
+                          ),
+                          CardTest(
+                            txt1: 'دورة 2025',
+                            txt2: '20 سؤال',
+                            txt3: 'بدء الحل',
+                            onTap: () {},
+                          ),
+                          CardTest(
+                            txt1: 'دورة 2025',
+                            txt2: '20 سؤال',
+                            txt3: 'بدء الحل',
+                            onTap: () {},
+                          ),
+                          CardTest(
+                            txt1: 'دورة 2025',
+                            txt2: '20 سؤال',
+                            txt3: 'بدء الحل',
+                            onTap: () {},
+                          ),
                         ],
                       ),
                     ),

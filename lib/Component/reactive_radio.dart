@@ -29,6 +29,10 @@ class _RadioFormExampleState extends State<RadioFormExample> {
         setState(() {
           _selectedValue = value;
         });
+        if (!answerUser.contains(value)) {
+          answerUser.add(value);
+        }
+
         print('$value');
       }
     });
@@ -79,11 +83,5 @@ class _RadioFormExampleState extends State<RadioFormExample> {
         value: value,
       ),
     );
-  }
-
-  String getSelectedValue() {
-    if (_selectedValue.isNotEmpty)
-   { answerUser.add(_selectedValue);}
-    return _selectedValue;
   }
 }

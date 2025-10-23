@@ -5,6 +5,7 @@ import 'package:untitled/Component/reactive_radio.dart';
 
 import 'Component/card_question.dart';
 import 'Screens/content_list_question.dart';
+import 'Screens/list_question.dart';
 import 'Screens/test_screen.dart';
 
 void main() {
@@ -23,13 +24,13 @@ class App extends StatelessWidget {
       builder: (context, child) {
         return SafeArea(
           child: MaterialApp(
-            theme: ThemeData(fontFamily: 'Tajawal'),
+            theme: ThemeData(fontFamily: 'Tajawal',brightness: Brightness.light),
             debugShowCheckedModeBanner: false,
             home: child,
           ),
 
         );
-      }, child:ContentListQuestion()
+      }, child:Questions()
     );
   }
 }

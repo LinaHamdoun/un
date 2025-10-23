@@ -30,6 +30,8 @@ class CardQuestion extends StatelessWidget {
       child: Column(
         children: [
           Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+
             children: [
               Star(clickStar: click, onToggle: onStarToggle),
               const Spacer(),

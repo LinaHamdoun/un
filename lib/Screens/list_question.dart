@@ -5,6 +5,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:untitled/Component/animation_icon.dart';
 
+import '../Component/list_question_com.dart';
+import 'content_list_question.dart';
+
 class Questions extends StatefulWidget {
   const Questions({super.key});
 
@@ -79,6 +82,12 @@ class _QuestionsState extends State<Questions> {
     super.dispose();
   }
 
+  void resetAll() {
+    answerUser.clear();
+
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     const double gapY1 = 58;
@@ -91,42 +100,44 @@ class _QuestionsState extends State<Questions> {
       backgroundColor: Colors.teal,
       body: Stack(
         children: [
+          ContentListQuestion(key: ValueKey(answerUser.length)),
+
           Align(
             alignment: Alignment.topCenter,
             child: isClosed
                 ? SizedBox()
                 : Padding(
-              padding: EdgeInsets.symmetric(horizontal: 15.w),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  IconButton(
-                    onPressed: startTimer,
-                    icon: SvgPicture.asset('assets/Logo/play_icon.svg'),
-                  ),
-                  Spacer(flex: 25),
+                    padding: EdgeInsets.symmetric(horizontal: 15.w),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        IconButton(
+                          onPressed: startTimer,
+                          icon: SvgPicture.asset('assets/Logo/play_icon.svg'),
+                        ),
+                        Spacer(flex: 25),
 
-                  Text(
-                    formatTime(seconds),
-                    style: const TextStyle(
-                      fontSize: 35,
-                      fontWeight: FontWeight.w500,
+                        Text(
+                          formatTime(seconds),
+                          style: const TextStyle(
+                            fontSize: 35,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        Spacer(flex: 3),
+
+                        IconButton(
+                          onPressed: resetTimer,
+                          icon: Icon(Icons.replay, size: 30),
+                        ),
+
+                        IconButton(
+                          onPressed: closeTimer,
+                          icon: Icon(Icons.close),
+                        ),
+                      ],
                     ),
                   ),
-                  Spacer(flex: 3),
-
-                  IconButton(
-                    onPressed: resetTimer,
-                    icon: Icon(Icons.replay, size: 30),
-                  ),
-
-                  IconButton(
-                    onPressed: closeTimer,
-                    icon: Icon(Icons.close),
-                  ),
-                ],
-              ),
-            ),
           ),
 
           Positioned(
@@ -150,7 +161,7 @@ class _QuestionsState extends State<Questions> {
                   right: 0,
                   bottom: isShow ? gapY2 : 0,
                   heroTag: 'delete',
-                  onPressed: () => debugPrint('delete pressed'),
+                  onPressed: resetAll,
                   image: 'assets/Logo/delete_icon.svg',
                   isShow: isShow,
                 ),

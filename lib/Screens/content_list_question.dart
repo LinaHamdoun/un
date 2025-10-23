@@ -12,7 +12,6 @@ class ContentListQuestion extends StatefulWidget {
 }
 
 class _ContentListQuestionState extends State<ContentListQuestion> {
-
   void refresh() => setState(() {});
 
   @override
@@ -70,4 +69,3 @@ class FavoriteManager {
     return favoriteIndexes.contains(index);
   }
 }
-
