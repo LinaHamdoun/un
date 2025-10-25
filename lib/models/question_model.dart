@@ -4,7 +4,7 @@ class QuestionModel {
   final String txt3;
   final String txt4;
   final String questionTxt;
-  final String answerTxt;
+  final String correctAnswer;
   final String labelQuestion ;
 
   QuestionModel({
@@ -14,7 +14,14 @@ class QuestionModel {
     required this.txt3,
     required this.txt4,
     required this.questionTxt,
-    required this.answerTxt,
+    required this.correctAnswer,
 
   });
+}
+class AnswerQuestion {
+  String labelQuestion ;
+   String answerUser ;
+  AnswerQuestion({required this.labelQuestion,required  this.answerUser,} );
+
+
 }

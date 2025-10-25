@@ -5,7 +5,8 @@ import '../Component/reactive_radio.dart';
 import 'faivorate_questions.dart';
 
 class ContentListQuestion extends StatefulWidget {
-  const ContentListQuestion({super.key});
+  const ContentListQuestion({super.key,  this.showCorrectAnswers = false});
+  final bool showCorrectAnswers;
 
   @override
   State<ContentListQuestion> createState() => _ContentListQuestionState();
@@ -40,6 +41,9 @@ class _ContentListQuestionState extends State<ContentListQuestion> {
             index: index,
             numberItem: listQuestion.length,
             radioFormExample: RadioFormExample(
+              showCorrectAnswers :widget.showCorrectAnswers,
+
+
               questionModel: listQuestion[index],
             ),
             click: isFavorite,

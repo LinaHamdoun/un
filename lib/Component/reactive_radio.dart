@@ -1,3 +1,5 @@
+import 'dart:core';
+
 import 'package:flutter/material.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
@@ -6,8 +8,13 @@ import 'list_question_com.dart';
 
 class RadioFormExample extends StatefulWidget {
   final QuestionModel questionModel;
+  final bool showCorrectAnswers;
 
-  const RadioFormExample({super.key, required this.questionModel});
+  const RadioFormExample({
+    super.key,
+    required this.questionModel,
+    this.showCorrectAnswers = false,
+  });
 
   @override
   State<RadioFormExample> createState() => _RadioFormExampleState();
@@ -22,6 +29,15 @@ class _RadioFormExampleState extends State<RadioFormExample> {
     super.initState();
     form = buildForm();
 
+    if (widget.showCorrectAnswers) {
+      Future.delayed(Duration.zero, () {
+        form.control(widget.questionModel.labelQuestion).value =
+            widget.questionModel.correctAnswer;
+      });
+    }
+
+
+
     form.control(widget.questionModel.labelQuestion).valueChanges.listen((
       value,
     ) {
@@ -29,11 +45,14 @@ class _RadioFormExampleState extends State<RadioFormExample> {
         setState(() {
           _selectedValue = value;
         });
-        if (!answerUser.contains(value)) {
-          answerUser.add(value);
+        final AnswerQuestion answer = AnswerQuestion(
+          labelQuestion: widget.questionModel.labelQuestion,
+          answerUser: value,
+        );
+        listAnswerUser.add(answer);
+        for (var q in listAnswerUser) {
+          print(q.answerUser);
         }
-
-        print('$value');
       }
     });
   }
@@ -75,11 +94,30 @@ class _RadioFormExampleState extends State<RadioFormExample> {
   }
 
   Widget _buildRadioOption(String value) {
+    bool isCorrect =
+        widget.showCorrectAnswers &&
+        value == widget.questionModel.correctAnswer;
+    if (isCorrect)
+      {
+        form.control(widget.questionModel.labelQuestion).value = widget.questionModel.correctAnswer;
+
+
+      }
+
+
+
     return SizedBox(
       width: 200,
-      child: ReactiveRadioListTile<String>(
+      child: ReactiveRadioListTile<String>(activeColor:  isCorrect ? Colors.green : Colors.amber,
         formControlName: widget.questionModel.labelQuestion,
-        title: Text(value),
+
+        title: Text(
+          value,
+          style: TextStyle(
+            color: isCorrect ? Colors.green : Colors.grey,
+            fontWeight: isCorrect ? FontWeight.bold : FontWeight.normal,
+          ),
+        ),
         value: value,
       ),
     );

@@ -17,6 +17,7 @@ class Questions extends StatefulWidget {
 
 class _QuestionsState extends State<Questions> {
   bool isShow = false;
+  bool showCorrect = false;
 
   void toggleIcons() {
     setState(() {
@@ -83,10 +84,12 @@ class _QuestionsState extends State<Questions> {
   }
 
   void resetAll() {
-    answerUser.clear();
+    listAnswerUser.clear();
 
     setState(() {});
   }
+  Widget fun() => ContentListQuestion(showCorrectAnswers: showCorrect);
+
 
   @override
   Widget build(BuildContext context) {
@@ -100,7 +103,7 @@ class _QuestionsState extends State<Questions> {
       backgroundColor: Colors.teal,
       body: Stack(
         children: [
-          ContentListQuestion(key: ValueKey(answerUser.length)),
+          ContentListQuestion(key: ValueKey(listAnswerUser.length),showCorrectAnswers: showCorrect ),
 
           Align(
             alignment: Alignment.topCenter,
@@ -152,11 +155,14 @@ class _QuestionsState extends State<Questions> {
                   right: 0,
                   bottom: isShow ? gapY1 : 0,
                   heroTag: 'check',
-                  onPressed: () => debugPrint(' check pressed'),
+                  onPressed: () {
+                    setState(() {
+                      showCorrect = !showCorrect;
+                    });
+                  },
                   image: 'assets/Logo/checke_icon.svg',
                   isShow: isShow,
                 ),
-
                 AnimationIcon(
                   right: 0,
                   bottom: isShow ? gapY2 : 0,
