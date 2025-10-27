@@ -39,6 +39,9 @@ dependencies:
   mobile_scanner: ^7.1.2
   font_awesome_flutter: ^10.10.0
   reactive_forms: ^18.1.1
+  flutter_bloc: ^9.1.1
+  bloc: ^9.1.0
+  shared_preferences: ^2.5.3
 
 dev_dependencies:
   flutter_test:

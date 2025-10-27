@@ -1,43 +1,42 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../Component/card_question.dart';
 import '../Component/list_question_com.dart';
 import '../Component/reactive_radio.dart';
-import 'content_list_question.dart';
+import '../Cubit/ui_cubit.dart';
 
-class FavoriteQuestions extends StatefulWidget {
+class FavoriteQuestions extends StatelessWidget {
   const FavoriteQuestions({super.key});
 
   @override
-  State<FavoriteQuestions> createState() => _FavoriteQuestionsState();
-}
-
-class _FavoriteQuestionsState extends State<FavoriteQuestions> {
-
-  void refresh() => setState(() {});
-
-  @override
   Widget build(BuildContext context) {
-    final favorites = FavoriteManager.favoriteIndexes;
-
     return Scaffold(
       appBar: AppBar(title: const Text("الأسئلة المفضلة")),
-      body: favorites.isEmpty
-          ? const Center(child: Text("لا توجد أسئلة مفضلة بعد"))
-          : ListView(
-        children: favorites.map((index) {
-          return CardQuestion(
-            index: index,
-            numberItem: listQuestion.length,
-            radioFormExample: RadioFormExample(
-              questionModel: listQuestion[index],
-            ),
-            click: true,
-            onStarToggle: () {
-              FavoriteManager.toggleFavorite(index);
-              refresh();
-            },
-          );
-        }).toList(),
+      body: BlocBuilder<UiCubit, UiState>(
+        builder: (context, state) {
+          final favorites = state is FavoriteState ? state.favorites : <int>[];
+
+          if (favorites.isNotEmpty) {
+            return ListView(
+              children: favorites.map((index) {
+                return CardQuestion(
+                  index: index,
+                  numberItem: listQuestion.length,
+                  radioFormExample: RadioFormExample(
+                    questionModel: listQuestion[index],
+                  ),
+                  click: true,
+                  onStarToggle: () {
+                    context.read<UiCubit>().toggleFavorite(index);
+                  },
+                );
+              }).toList(),
+            );
+          } else {
+            return const Center(child: Text("لا توجد أسئلة مفضلة بعد"));
+          }
+        },
       ),
     );
   }

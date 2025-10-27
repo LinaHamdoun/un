@@ -36,8 +36,6 @@ class _RadioFormExampleState extends State<RadioFormExample> {
       });
     }
 
-
-
     form.control(widget.questionModel.labelQuestion).valueChanges.listen((
       value,
     ) {
@@ -97,28 +95,32 @@ class _RadioFormExampleState extends State<RadioFormExample> {
     bool isCorrect =
         widget.showCorrectAnswers &&
         value == widget.questionModel.correctAnswer;
-    if (isCorrect)
-      {
-        form.control(widget.questionModel.labelQuestion).value = widget.questionModel.correctAnswer;
 
+    final formControl = form.control(widget.questionModel.labelQuestion);
+    final isSelected = formControl.value == value;
 
-      }
-
-
+    Color textColor;
+    if (isCorrect) {
+      textColor = Colors.green;
+    } else if (isSelected) {
+      textColor = Colors.amber;
+    } else {
+      textColor = Colors.grey;
+    }
 
     return SizedBox(
       width: 200,
-      child: ReactiveRadioListTile<String>(activeColor:  isCorrect ? Colors.green : Colors.amber,
+      child: ReactiveRadioListTile<String>(
         formControlName: widget.questionModel.labelQuestion,
-
+        value: value,
+        activeColor: isCorrect ? Colors.green : Colors.amber,
         title: Text(
           value,
           style: TextStyle(
-            color: isCorrect ? Colors.green : Colors.grey,
-            fontWeight: isCorrect ? FontWeight.bold : FontWeight.normal,
+            color: textColor,
+            fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
           ),
         ),
-        value: value,
       ),
     );
   }

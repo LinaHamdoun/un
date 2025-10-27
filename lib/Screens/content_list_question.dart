@@ -1,19 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../Component/card_question.dart';
 import '../Component/list_question_com.dart';
 import '../Component/reactive_radio.dart';
+import '../Cubit/ui_cubit.dart';
 import 'faivorate_questions.dart';
 
-class ContentListQuestion extends StatefulWidget {
-  const ContentListQuestion({super.key,  this.showCorrectAnswers = false});
+class ContentListQuestion extends StatelessWidget {
   final bool showCorrectAnswers;
 
-  @override
-  State<ContentListQuestion> createState() => _ContentListQuestionState();
-}
-
-class _ContentListQuestionState extends State<ContentListQuestion> {
-  void refresh() => setState(() {});
+  const ContentListQuestion({super.key, this.showCorrectAnswers = false});
 
   @override
   Widget build(BuildContext context) {
@@ -27,49 +24,36 @@ class _ContentListQuestionState extends State<ContentListQuestion> {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (_) => const FavoriteQuestions()),
-              ).then((_) => setState(() {}));
+              );
             },
           ),
         ],
       ),
-      body: ListView.builder(
-        itemCount: listQuestion.length,
-        itemBuilder: (context, index) {
-          bool isFavorite = FavoriteManager.isFavorite(index);
+      body: BlocBuilder<UiCubit, UiState>(
+        builder: (context, state) {
+          final favorites = state is FavoriteState ? state.favorites : <int>[];
 
-          return CardQuestion(
-            index: index,
-            numberItem: listQuestion.length,
-            radioFormExample: RadioFormExample(
-              showCorrectAnswers :widget.showCorrectAnswers,
+          return ListView.builder(
+            itemCount: listQuestion.length,
+            itemBuilder: (context, index) {
+              final isFavorite = favorites.contains(index);
 
-
-              questionModel: listQuestion[index],
-            ),
-            click: isFavorite,
-            onStarToggle: () {
-              FavoriteManager.toggleFavorite(index);
-              refresh();
+              return CardQuestion(
+                index: index,
+                numberItem: listQuestion.length,
+                radioFormExample: RadioFormExample(
+                  showCorrectAnswers: showCorrectAnswers,
+                  questionModel: listQuestion[index],
+                ),
+                click: isFavorite,
+                onStarToggle: () {
+                  context.read<UiCubit>().toggleFavorite(index);
+                },
+              );
             },
           );
         },
       ),
     );
-  }
-}
-
-class FavoriteManager {
-  static final List<int> favoriteIndexes = [];
-
-  static void toggleFavorite(int index) {
-    if (favoriteIndexes.contains(index)) {
-      favoriteIndexes.remove(index);
-    } else {
-      favoriteIndexes.add(index);
-    }
-  }
-
-  static bool isFavorite(int index) {
-    return favoriteIndexes.contains(index);
   }
 }
