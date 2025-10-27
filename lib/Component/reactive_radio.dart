@@ -1,8 +1,10 @@
 import 'dart:core';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
+import '../Cubit/ui_cubit.dart';
 import '../models/question_model.dart';
 import 'list_question_com.dart';
 
@@ -22,13 +24,13 @@ class RadioFormExample extends StatefulWidget {
 
 class _RadioFormExampleState extends State<RadioFormExample> {
   late FormGroup form;
-  String _selectedValue = '';
 
   @override
   void initState() {
     super.initState();
     form = buildForm();
 
+    // تعيين الإجابة الصحيحة إذا كان المطلوب إظهارها
     if (widget.showCorrectAnswers) {
       Future.delayed(Duration.zero, () {
         form.control(widget.questionModel.labelQuestion).value =
@@ -36,24 +38,25 @@ class _RadioFormExampleState extends State<RadioFormExample> {
       });
     }
 
-    form.control(widget.questionModel.labelQuestion).valueChanges.listen((
-      value,
-    ) {
-      if (value != null) {
-        setState(() {
-          _selectedValue = value;
-        });
-        final AnswerQuestion answer = AnswerQuestion(
-          labelQuestion: widget.questionModel.labelQuestion,
-          answerUser: value,
-        );
-        listAnswerUser.add(answer);
-        for (var q in listAnswerUser) {
-          print(q.answerUser);
+    // نراقب تغيّر قيمة الـ radio بعد أن تُبنى الواجهة
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      form
+          .control(widget.questionModel.labelQuestion)
+          .valueChanges
+          .listen((value) {
+        if (value != null) {
+          final answer = AnswerQuestion(
+            labelQuestion: widget.questionModel.labelQuestion,
+            answerUser: value,
+          );
+
+          // الآن يمكننا استخدام context بأمان ✅
+          context.read<UiCubit>().addAnswer(answer);
         }
-      }
+      });
     });
   }
+
 
   @override
   void dispose() {

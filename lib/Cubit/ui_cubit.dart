@@ -4,6 +4,8 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../models/question_model.dart';
+
 part 'ui_state.dart';
 
 class UiCubit extends Cubit<UiState> {
@@ -11,6 +13,12 @@ class UiCubit extends Cubit<UiState> {
   Timer? _timer;
   int _seconds = 0;
   bool _isClosed = true;
+  bool isShow = false;
+  List<AnswerQuestion> listAnswerUser = [];
+  bool showCorrect = false;
+
+
+
 
   UiCubit() : super(UiInitial()) {
     _loadFavorites();
@@ -89,4 +97,41 @@ class UiCubit extends Cubit<UiState> {
     String twoDigits(int n) => n.toString().padLeft(2, '0');
     return "${twoDigits(hours)} : ${twoDigits(minutes)} : ${twoDigits(secs)}";
   }
+
+
+  void toggleIcons() {
+    isShow = !isShow;
+    emit(UiIconsToggled(isShow));
+  }
+
+
+
+  void addAnswer(AnswerQuestion answer) {
+  listAnswerUser.removeWhere(
+  (a) => a.labelQuestion == answer.labelQuestion,
+  );
+
+  listAnswerUser.add(answer);
+
+  print("🟢 إجابات المستخدم:");
+  for (var q in listAnswerUser) {
+  print("${q.labelQuestion}: ${q.answerUser}");
+  }
+
+  emit(UiAnswersReset(List.from(listAnswerUser)));
+  }
+
+
+  void resetAll() {
+    listAnswerUser.clear();
+    emit(UiAnswersReset([]));
+  }
+
+
+  void toggleShowCorrect() {
+    showCorrect = !showCorrect;
+    emit(UiShowCorrectAnswers(showCorrect));
+  }
+
+
 }

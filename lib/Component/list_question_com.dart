@@ -14,7 +14,6 @@ List <QuestionModel> listQuestion = [
 ];
 
 
-List<AnswerQuestion> listAnswerUser = [];
 
 
 

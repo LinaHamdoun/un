@@ -1,62 +1,58 @@
-
-
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-class AnimationIcon extends StatefulWidget {
-  const AnimationIcon({super.key, required this.right, required this.bottom, required this.heroTag,
-    required this.onPressed,  required this.image, required this.isShow,});
+class AnimationIcon extends StatelessWidget {
+  const AnimationIcon({
+    super.key,
+    required this.right,
+    required this.bottom,
+    required this.heroTag,
+    required this.onPressed,
+    required this.image,
+    required this.isShow,
+  });
 
- final  double right ;
- final double bottom ;
- final String heroTag ;
- final VoidCallback onPressed ;
- final String image ;
- final bool isShow;
+  final double right;
 
+  final double bottom;
 
-  @override
-  State<AnimationIcon> createState() => _AnimationIconState();
-}
+  final String heroTag;
 
-class _AnimationIconState extends State<AnimationIcon> {
+  final VoidCallback onPressed;
+
+  final String image;
+
+  final bool isShow;
 
   @override
   Widget build(BuildContext context) {
     const animationDuration = Duration(milliseconds: 400);
     const animationCurve = Curves.easeInOutCubic;
 
-    return                 AnimatedPositioned(
-
-
+    return AnimatedPositioned(
       duration: animationDuration,
       curve: animationCurve,
-      right: widget.right,
+      right: right,
       // right
-      bottom: widget.bottom ,
-      //bottom
+      bottom: bottom,
 
+      //bottom
       child: AnimatedOpacity(
-        opacity: widget. isShow ? 1 : 0,
+        opacity: isShow ? 1 : 0,
         duration: animationDuration,
         curve: animationCurve,
         child: FloatingActionButton(
           elevation: 0,
-          shape:  CircleBorder(),
-          heroTag: widget.heroTag,
-          //herotag
+          shape: CircleBorder(),
+          heroTag: heroTag,
           mini: true,
           backgroundColor: Colors.white,
-          onPressed: widget.onPressed,
+          onPressed: onPressed,
           // onPressed
-          child:
-          SvgPicture.asset(widget .image, height: 24),
+          child: SvgPicture.asset(image, height: 24),
           // image name
         ),
       ),
     );
-
   }
 }
