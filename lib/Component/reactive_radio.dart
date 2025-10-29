@@ -30,7 +30,6 @@ class _RadioFormExampleState extends State<RadioFormExample> {
     super.initState();
     form = buildForm();
 
-    // تعيين الإجابة الصحيحة إذا كان المطلوب إظهارها
     if (widget.showCorrectAnswers) {
       Future.delayed(Duration.zero, () {
         form.control(widget.questionModel.labelQuestion).value =
@@ -38,25 +37,21 @@ class _RadioFormExampleState extends State<RadioFormExample> {
       });
     }
 
-    // نراقب تغيّر قيمة الـ radio بعد أن تُبنى الواجهة
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      form
-          .control(widget.questionModel.labelQuestion)
-          .valueChanges
-          .listen((value) {
+      form.control(widget.questionModel.labelQuestion).valueChanges.listen((
+        value,
+      ) {
         if (value != null) {
           final answer = AnswerQuestion(
             labelQuestion: widget.questionModel.labelQuestion,
             answerUser: value,
           );
 
-          // الآن يمكننا استخدام context بأمان ✅
           context.read<UiCubit>().addAnswer(answer);
         }
       });
     });
   }
-
 
   @override
   void dispose() {

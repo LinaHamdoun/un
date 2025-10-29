@@ -20,16 +20,18 @@ class TimerRunning extends UiState {
 
 final class UiIconsToggled extends UiState {
   final bool isShow;
+
   UiIconsToggled(this.isShow);
 }
 
 final class UiAnswersReset extends UiState {
   final List<AnswerQuestion> listAnswerUser;
+
   UiAnswersReset(this.listAnswerUser);
 }
 
 final class UiShowCorrectAnswers extends UiState {
   final bool showCorrect;
+
   UiShowCorrectAnswers(this.showCorrect);
 }
-

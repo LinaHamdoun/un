@@ -4,11 +4,7 @@ class Star extends StatelessWidget {
   final bool clickStar;
   final VoidCallback onToggle;
 
-  const Star({
-    super.key,
-    required this.clickStar,
-    required this.onToggle,
-  });
+  const Star({super.key, required this.clickStar, required this.onToggle});
 
   @override
   Widget build(BuildContext context) {

@@ -5,8 +5,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:untitled/Component/animation_icon.dart';
 import 'package:untitled/Cubit/ui_cubit.dart';
 
-import '../Component/list_question_com.dart';
-import '../Cubit/ui_cubit.dart';
 import 'content_list_question.dart';
 
 class Questions extends StatelessWidget {
@@ -14,11 +12,11 @@ class Questions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const double gapY1 = 58;
-    const double gapY2 = 103;
-    const double gapY3 = 148;
-    const double gapX1 = 58;
-    const double gapX2 = 103;
+    double gapY1 = 58.h;
+    double gapY2 = 103.h;
+    double gapY3 = 148.h;
+    double gapX1 = 58.w;
+    double gapX2 = 103.w;
 
     return Scaffold(
       backgroundColor: Colors.teal,
@@ -113,7 +111,7 @@ class Questions extends StatelessWidget {
                       right: 0,
                       bottom: isShow ? gapY3 : 0,
                       heroTag: 'timer',
-                      onPressed: () => context.read<UiCubit>().showTimer(),
+                      onPressed: cubit.showTimer,
                       image: 'assets/Logo/timer_icon.svg',
                       isShow: isShow,
                     ),
@@ -144,7 +142,7 @@ class Questions extends StatelessWidget {
                         backgroundColor: Colors.white,
                         onPressed: cubit.toggleIcons,
                         child: AnimatedSwitcher(
-                          duration: const Duration(milliseconds: 200),
+                          duration: const Duration(milliseconds: 300),
                           transitionBuilder: (child, anim) =>
                               RotationTransition(turns: anim, child: child),
                           child: Icon(

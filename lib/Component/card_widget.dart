@@ -5,9 +5,10 @@ import 'package:untitled/Colors/colors_screens.dart';
 import '../Component/container_icon.dart';
 
 class CardWidget extends StatelessWidget {
-  final String? image;
 
   final ContainerIcon? containerIcon;
+  final String? image;
+
 
   final String title;
 
@@ -32,7 +33,6 @@ class CardWidget extends StatelessWidget {
           : SizedBox(width: 1.w),
     );
   }
-
 
   @override
   Widget build(BuildContext context) {

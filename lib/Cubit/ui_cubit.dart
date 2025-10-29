@@ -17,9 +17,6 @@ class UiCubit extends Cubit<UiState> {
   List<AnswerQuestion> listAnswerUser = [];
   bool showCorrect = false;
 
-
-
-
   UiCubit() : super(UiInitial()) {
     _loadFavorites();
   }
@@ -98,35 +95,28 @@ class UiCubit extends Cubit<UiState> {
     return "${twoDigits(hours)} : ${twoDigits(minutes)} : ${twoDigits(secs)}";
   }
 
-
   void toggleIcons() {
     isShow = !isShow;
     emit(UiIconsToggled(isShow));
   }
 
-
-
   void addAnswer(AnswerQuestion answer) {
-  listAnswerUser.removeWhere(
-  (a) => a.labelQuestion == answer.labelQuestion,
-  );
+    listAnswerUser.removeWhere((a) => a.labelQuestion == answer.labelQuestion);
 
-  listAnswerUser.add(answer);
+    listAnswerUser.add(answer);
 
-  print("🟢 إجابات المستخدم:");
-  for (var q in listAnswerUser) {
-  print("${q.labelQuestion}: ${q.answerUser}");
+    print(" إجابات المستخدم:");
+    for (var q in listAnswerUser) {
+      print("${q.labelQuestion}: ${q.answerUser}");
+    }
+
+    emit(UiAnswersReset(List.from(listAnswerUser)));
   }
-
-  emit(UiAnswersReset(List.from(listAnswerUser)));
-  }
-
 
   void resetAll() {
     listAnswerUser.clear();
     emit(UiAnswersReset([]));
   }
-
 
   void toggleShowCorrect() {
     showCorrect = !showCorrect;
