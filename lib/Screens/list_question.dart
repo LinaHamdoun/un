@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:untitled/Component/animation_icon.dart';
 import 'package:untitled/Cubit/ui_cubit.dart';
 
+import '../models/question_model.dart';
 import 'content_list_question.dart';
 
 class Questions extends StatelessWidget {
@@ -25,15 +26,15 @@ class Questions extends StatelessWidget {
           BlocBuilder<UiCubit, UiState>(
             builder: (context, state) {
               final cubit = context.read<UiCubit>();
-              final listAnswerUser = cubit.listAnswerUser;
+             // final listAnswerUser = cubit .listAnswerUser;
               bool showCorrect = false;
-              if (state is UiShowCorrectAnswers) {
-                showCorrect = state.showCorrect;
-              }
+            if (state is UiShowCorrectAnswers) {
+              showCorrect = state.showCorrect;
+             }
 
               return ContentListQuestion(
-                key: ValueKey(listAnswerUser.length),
-                showCorrectAnswers: showCorrect,
+                 key: ValueKey(cubit.reset),
+                showCorrectAnswers:showCorrect,
               );
             },
           ),
@@ -82,7 +83,7 @@ class Questions extends StatelessWidget {
           BlocBuilder<UiCubit, UiState>(
             builder: (context, state) {
               final cubit = context.read<UiCubit>();
-              final isShow = cubit.isShow;
+              bool isShow = cubit.isShow ;
               return Positioned(
                 right: 20,
                 bottom: 20,

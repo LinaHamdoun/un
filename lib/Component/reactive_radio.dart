@@ -90,8 +90,9 @@ class _RadioFormExampleState extends State<RadioFormExample> {
   }
 
   Widget _buildRadioOption(String value) {
+    final  cubit = context.read <UiCubit>();
     bool isCorrect =
-        widget.showCorrectAnswers &&
+       cubit.showCorrect  &&
         value == widget.questionModel.correctAnswer;
 
     final formControl = form.control(widget.questionModel.labelQuestion);
@@ -116,7 +117,7 @@ class _RadioFormExampleState extends State<RadioFormExample> {
           value,
           style: TextStyle(
             color: textColor,
-            fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+            fontWeight:  FontWeight.bold
           ),
         ),
       ),

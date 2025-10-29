@@ -35,3 +35,11 @@ final class UiShowCorrectAnswers extends UiState {
 
   UiShowCorrectAnswers(this.showCorrect);
 }
+
+final class UiAnswersRestart extends UiState {
+  final List<AnswerQuestion> listAnswerUser;
+
+  UiAnswersRestart(this.listAnswerUser);
+}
+
+

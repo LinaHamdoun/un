@@ -16,6 +16,7 @@ class UiCubit extends Cubit<UiState> {
   bool isShow = false;
   List<AnswerQuestion> listAnswerUser = [];
   bool showCorrect = false;
+  bool reset = false ;
 
   UiCubit() : super(UiInitial()) {
     _loadFavorites();
@@ -115,7 +116,8 @@ class UiCubit extends Cubit<UiState> {
 
   void resetAll() {
     listAnswerUser.clear();
-    emit(UiAnswersReset([]));
+    reset =  !reset ;
+    emit(UiAnswersRestart([]));
   }
 
   void toggleShowCorrect() {
