@@ -42,4 +42,11 @@ final class UiAnswersRestart extends UiState {
   UiAnswersRestart(this.listAnswerUser);
 }
 
+final class UiCorrectAnswerUser extends UiState {
+  final bool correctAnswerUser;
+
+  UiCorrectAnswerUser(this.correctAnswerUser);
+}
+
+
 

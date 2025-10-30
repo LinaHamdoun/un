@@ -35,6 +35,10 @@ class _RadioFormExampleState extends State<RadioFormExample> {
         form.control(widget.questionModel.labelQuestion).value =
             widget.questionModel.correctAnswer;
       });
+
+        form.control(widget.questionModel.labelQuestion).markAsDisabled();
+
+
     }
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -91,28 +95,76 @@ class _RadioFormExampleState extends State<RadioFormExample> {
 
   Widget _buildRadioOption(String value) {
     final  cubit = context.read <UiCubit>();
-    bool isCorrect =
-       cubit.showCorrect  &&
-        value == widget.questionModel.correctAnswer;
 
+
+    bool c ()
+    {
+      bool isCorrect = ( cubit.showCorrect  && value == widget.questionModel.correctAnswer );
+      isCorrect?
+      form.control(widget.questionModel.labelQuestion).value = value : null;
+      return isCorrect;
+    }
+
+    bool correctTrue ()
+    {
+      bool correctTrue = ( cubit.correctAnswerUser  &&
+          form.control(widget.questionModel.labelQuestion).value == widget.questionModel.correctAnswer ) ;
+     // ( value == widget.questionModel.correctAnswer );
+      return correctTrue;
+
+    }
+    bool selectText = ( cubit.correctAnswerUser  &&
+        form.control(widget.questionModel.labelQuestion).value == widget.questionModel.correctAnswer ) &&
+        ( value == widget.questionModel.correctAnswer );
+
+
+
+  /*  bool correctFalse ()
+    {
+      bool correctFalse = ( cubit.correctAnswerUser  &&
+          form.control(widget.questionModel.labelQuestion).value != widget.questionModel.correctAnswer );
+        //  (value != widget.questionModel.correctAnswer);
+      return correctFalse;
+    }
+
+  bool selectTextError =       ( cubit.correctAnswerUser  &&
+        form.control(widget.questionModel.labelQuestion).value != widget.questionModel.correctAnswer )&&
+    (value != widget.questionModel.correctAnswer);*/
+
+
+
+    bool isCorrect = cubit.showCorrect  && value == widget.questionModel.correctAnswer;
     final formControl = form.control(widget.questionModel.labelQuestion);
-    final isSelected = formControl.value == value;
+    final isSelected = formControl.value == value  ;
 
     Color textColor;
-    if (isCorrect) {
+    if (isCorrect || selectText ) {
       textColor = Colors.green;
     } else if (isSelected) {
       textColor = Colors.amber;
-    } else {
+    }
+   // else if (selectTextError) {textColor = Colors.red;}
+    else {
       textColor = Colors.grey;
     }
+
+
+Color ? activeColor ;
+    if ( c() || correctTrue()) {activeColor = Colors.green; }
+      else if (! (c() || correctTrue())){ activeColor = Colors.amber;}
+  //  else if (correctFalse()) {activeColor = Colors.red;}
+    else {activeColor = null ;}
+
+
+
 
     return SizedBox(
       width: 200,
       child: ReactiveRadioListTile<String>(
         formControlName: widget.questionModel.labelQuestion,
         value: value,
-        activeColor: isCorrect ? Colors.green : Colors.amber,
+        activeColor:   activeColor
+      ,
         title: Text(
           value,
           style: TextStyle(

@@ -120,7 +120,7 @@ class Questions extends StatelessWidget {
                       right: isShow ? gapX1 : 0,
                       bottom: 0,
                       heroTag: 'seq',
-                      onPressed: () {},
+                      onPressed: cubit.funCorrectAnswerUser,
                       image: 'assets/Logo/sequer_checkeIcon.svg',
                       isShow: isShow,
                     ),
