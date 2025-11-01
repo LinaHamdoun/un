@@ -3,11 +3,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:untitled/Colors/colors_screens.dart';
 import 'package:untitled/Screens/physics_screen.dart';
 import 'package:untitled/Screens/summaries_screen.dart';
+import 'package:untitled/Screens/test_screen.dart';
 import 'package:untitled/Screens/videoList_page.dart';
 
 import '../Component/card_widget.dart';
 import '../Component/container_icon.dart';
 import '../Component/text_top.dart';
+import 'faivorate_questions.dart';
 
 class PhysicsNawasat extends StatelessWidget {
   const PhysicsNawasat({super.key});
@@ -99,12 +101,26 @@ class PhysicsNawasat extends StatelessWidget {
                           CardWidget(
                             title: 'الأسئلة و الاختبارات',
                             subtitle: '20 دزوس',
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => TestScreen(),
+                                ),
+                              );
+                            },
                           ),
                           CardWidget(
                             title: 'المفضلة',
                             subtitle: '20 سؤال',
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => FavoriteQuestions(),
+                                ),
+                              );
+                            },
                           ),
                         ],
                       ),

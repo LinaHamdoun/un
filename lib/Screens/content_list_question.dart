@@ -14,22 +14,8 @@ class ContentListQuestion extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("الأسئلة"),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.star, color: Colors.amber),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (_) => const FavoriteQuestions()),
-              );
-            },
-          ),
-        ],
-      ),
-      body: BlocBuilder<UiCubit, UiState>(
+    return
+     BlocBuilder<UiCubit, UiState>(
         builder: (context, state) {
           final favorites = state is FavoriteState ? state.favorites : <int>[];
 
@@ -53,7 +39,7 @@ class ContentListQuestion extends StatelessWidget {
             },
           );
         },
-      ),
-    );
+      );
+
   }
 }

@@ -9,6 +9,7 @@ import '../Component/card_widget.dart';
 import '../Component/container_icon.dart';
 import '../Component/list_question_com.dart';
 import '../Component/text_top.dart';
+import 'list_question.dart';
 
 class TestScreen extends StatelessWidget {
   const TestScreen({super.key});
@@ -67,7 +68,14 @@ class TestScreen extends StatelessWidget {
                             txt1: 'دورة 2025',
                             txt2: '20 سؤال',
                             txt3: 'بدء الحل',
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => Questions(),
+                                ),
+                              );
+                            },
                           ),
                           CardTest(
                             txt1: 'دورة 2025',

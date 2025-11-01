@@ -8,9 +8,6 @@ part 'ui_state.dart';
 
 class UiCubit extends Cubit<UiState> {
   final List<int> _favorites = [];
-  Timer? _timer;
-  int _seconds = 0;
-  bool _isClosed = true;
   bool isShow = false;
   List<AnswerQuestion> listAnswerUser = [];
   bool showCorrect = false;
@@ -52,48 +49,6 @@ class UiCubit extends Cubit<UiState> {
 
   bool isFavorite(int index) => _favorites.contains(index);
 
-
-  void startTimer() {
-    _timer?.cancel();
-    _isClosed = false;
-
-    _timer = Timer.periodic(const Duration(seconds: 1), (_) {
-      _seconds++;
-      emit(TimerRunning(_seconds, _isClosed));
-    });
-  }
-
-  void resetTimer() {
-    _timer?.cancel();
-    _seconds = 0;
-    startTimer();
-  }
-
-  void closeTimer() {
-    _timer?.cancel();
-    _seconds = 0;
-    _isClosed = true;
-    emit(TimerRunning(_seconds, _isClosed));
-  }
-
-  void showTimer() {
-    _timer?.cancel();
-    _seconds = 0;
-    _isClosed = false;
-    emit(TimerRunning(_seconds, _isClosed));
-  }
-
-  void disposeTimer() {
-    _timer?.cancel();
-  }
-
-  String formatTime(int totalSeconds) {
-    int hours = totalSeconds ~/ 3600;
-    int minutes = (totalSeconds % 3600) ~/ 60;
-    int secs = totalSeconds % 60;
-    String twoDigits(int n) => n.toString().padLeft(2, '0');
-    return "${twoDigits(hours)} : ${twoDigits(minutes)} : ${twoDigits(secs)}";
-  }
 
 
   void toggleIcons() {

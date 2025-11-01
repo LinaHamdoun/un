@@ -28,6 +28,8 @@ class CardQuestion extends StatelessWidget {
         color: Colors.white70,
       ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.end,
+
         children: [
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -38,7 +40,10 @@ class CardQuestion extends StatelessWidget {
               radioFormExample,
             ],
           ),
-          Text('السؤال رقم ${index + 1} من $numberItem'),
+          Padding(
+            padding: const EdgeInsets.only(right: 20, bottom: 5),
+            child: Text('السؤال  ${index + 1} من $numberItem'),
+          ),
         ],
       ),
     );
