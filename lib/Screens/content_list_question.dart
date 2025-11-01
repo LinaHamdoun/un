@@ -33,10 +33,7 @@ class ContentListQuestion extends StatelessWidget {
         builder: (context, state) {
           final favorites = state is FavoriteState ? state.favorites : <int>[];
 
-
-          return
-
-            ListView.builder(
+          return ListView.builder(
             itemCount: listQuestion.length,
             itemBuilder: (context, index) {
               final isFavorite = favorites.contains(index);
@@ -44,9 +41,7 @@ class ContentListQuestion extends StatelessWidget {
               return CardQuestion(
                 index: index,
                 numberItem: listQuestion.length,
-                radioFormExample:
-
-                RadioFormExample(
+                radioFormExample: RadioFormExample(
                   showCorrectAnswers: showCorrectAnswers,
                   questionModel: listQuestion[index],
                 ),

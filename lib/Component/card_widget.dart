@@ -5,10 +5,8 @@ import 'package:untitled/Colors/colors_screens.dart';
 import '../Component/container_icon.dart';
 
 class CardWidget extends StatelessWidget {
-
   final ContainerIcon? containerIcon;
   final String? image;
-
 
   final String title;
 

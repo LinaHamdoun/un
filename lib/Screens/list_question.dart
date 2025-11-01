@@ -26,15 +26,15 @@ class Questions extends StatelessWidget {
           BlocBuilder<UiCubit, UiState>(
             builder: (context, state) {
               final cubit = context.read<UiCubit>();
-             // final listAnswerUser = cubit .listAnswerUser;
+              // final listAnswerUser = cubit .listAnswerUser;
               bool showCorrect = false;
-            if (state is UiShowCorrectAnswers) {
-              showCorrect = state.showCorrect;
-             }
+              if (state is UiShowCorrectAnswers) {
+                showCorrect = state.showCorrect;
+              }
 
               return ContentListQuestion(
-                 key: ValueKey(cubit.reset),
-                showCorrectAnswers:showCorrect,
+                key: ValueKey(cubit.reset),
+                showCorrectAnswers: showCorrect,
               );
             },
           ),
@@ -83,7 +83,7 @@ class Questions extends StatelessWidget {
           BlocBuilder<UiCubit, UiState>(
             builder: (context, state) {
               final cubit = context.read<UiCubit>();
-              bool isShow = cubit.isShow ;
+              bool isShow = cubit.isShow;
               return Positioned(
                 right: 20,
                 bottom: 20,

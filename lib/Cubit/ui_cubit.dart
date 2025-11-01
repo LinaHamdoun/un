@@ -1,9 +1,7 @@
 import 'dart:async';
-
 import 'package:bloc/bloc.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../models/question_model.dart';
 
 part 'ui_state.dart';
@@ -16,13 +14,12 @@ class UiCubit extends Cubit<UiState> {
   bool isShow = false;
   List<AnswerQuestion> listAnswerUser = [];
   bool showCorrect = false;
-  bool reset = false ;
-  bool correctAnswerUser = false ;
+  bool reset = false;
+  bool correctAnswerUser = false;
 
   UiCubit() : super(UiInitial()) {
     _loadFavorites();
   }
-
 
   // Getter
   List<int> get favorites => List<int>.from(_favorites);
@@ -30,7 +27,6 @@ class UiCubit extends Cubit<UiState> {
   Future<void> _loadFavorites() async {
     final prefs = await SharedPreferences.getInstance();
     final saved = prefs.getStringList('favorites') ?? [];
-
     _favorites
       ..clear()
       ..addAll(saved.map(int.parse));
@@ -55,6 +51,7 @@ class UiCubit extends Cubit<UiState> {
   }
 
   bool isFavorite(int index) => _favorites.contains(index);
+
 
   void startTimer() {
     _timer?.cancel();
@@ -98,19 +95,20 @@ class UiCubit extends Cubit<UiState> {
     return "${twoDigits(hours)} : ${twoDigits(minutes)} : ${twoDigits(secs)}";
   }
 
+
   void toggleIcons() {
     isShow = !isShow;
     emit(UiIconsToggled(isShow));
   }
 
   void addAnswer(AnswerQuestion answer) {
-
-
     listAnswerUser.removeWhere((a) => a.labelQuestion == answer.labelQuestion);
 
-     showCorrect? listAnswerUser :  listAnswerUser.add(answer);
+    if (!showCorrect) {
+      listAnswerUser.add(answer);
+    }
 
-    print(" إجابات المستخدم:");
+    print("📋 إجابات المستخدم:");
     for (var q in listAnswerUser) {
       print("${q.labelQuestion}: ${q.answerUser}");
     }
@@ -120,23 +118,18 @@ class UiCubit extends Cubit<UiState> {
 
   void resetAll() {
     listAnswerUser.clear();
-    reset =  !reset ;
+    reset = !reset;
     emit(UiAnswersRestart([]));
   }
 
   void toggleShowCorrect() {
     showCorrect = !showCorrect;
-  ! showCorrect ?  resetAll() : listAnswerUser.clear();
 
     emit(UiShowCorrectAnswers(showCorrect));
   }
 
-  void funCorrectAnswerUser ()
-  {
-
-    correctAnswerUser = ! correctAnswerUser;
-    emit(UiCorrectAnswerUser (correctAnswerUser ));
+  void funCorrectAnswerUser() {
+    correctAnswerUser = !correctAnswerUser;
+    emit(UiCorrectAnswerUser(correctAnswerUser));
   }
-
-
 }

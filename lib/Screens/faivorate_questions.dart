@@ -25,6 +25,7 @@ class FavoriteQuestions extends StatelessWidget {
                   numberItem: listQuestion.length,
                   radioFormExample: RadioFormExample(
                     questionModel: listQuestion[index],
+                    showCorrectAnswers: context.read<UiCubit>().showCorrect,
                   ),
                   click: true,
                   onStarToggle: () {

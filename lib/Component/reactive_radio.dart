@@ -1,12 +1,9 @@
-import 'dart:core';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 import '../Cubit/ui_cubit.dart';
 import '../models/question_model.dart';
-import 'list_question_com.dart';
 
 class RadioFormExample extends StatefulWidget {
   final QuestionModel questionModel;
@@ -15,7 +12,7 @@ class RadioFormExample extends StatefulWidget {
   const RadioFormExample({
     super.key,
     required this.questionModel,
-    this.showCorrectAnswers = false,
+    required this.showCorrectAnswers,
   });
 
   @override
@@ -24,6 +21,7 @@ class RadioFormExample extends StatefulWidget {
 
 class _RadioFormExampleState extends State<RadioFormExample> {
   late FormGroup form;
+  String? _userAnswer;
 
   @override
   void initState() {
@@ -35,10 +33,7 @@ class _RadioFormExampleState extends State<RadioFormExample> {
         form.control(widget.questionModel.labelQuestion).value =
             widget.questionModel.correctAnswer;
       });
-
-        form.control(widget.questionModel.labelQuestion).markAsDisabled();
-
-
+      form.control(widget.questionModel.labelQuestion).markAsDisabled();
     }
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -50,17 +45,10 @@ class _RadioFormExampleState extends State<RadioFormExample> {
             labelQuestion: widget.questionModel.labelQuestion,
             answerUser: value,
           );
-
           context.read<UiCubit>().addAnswer(answer);
         }
       });
     });
-  }
-
-  @override
-  void dispose() {
-    form.dispose();
-    super.dispose();
   }
 
   FormGroup buildForm() => FormGroup({
@@ -69,108 +57,88 @@ class _RadioFormExampleState extends State<RadioFormExample> {
 
   @override
   Widget build(BuildContext context) {
-    return ReactiveForm(
-      formGroup: form,
-      child: Directionality(
-        textDirection: TextDirection.rtl,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              widget.questionModel.questionTxt,
-              style: const TextStyle(color: Colors.amber, fontSize: 20),
-            ),
+    return BlocListener<UiCubit, UiState>(
+      listenWhen: (previous, current) {
+        return (current is UiShowCorrectAnswers);
+      },
+      listener: (context, state) {
+        final cubit = context.read<UiCubit>();
+        final formControl = form.control(widget.questionModel.labelQuestion);
 
-            const SizedBox(height: 16),
-
-            _buildRadioOption(widget.questionModel.txt1),
-            _buildRadioOption(widget.questionModel.txt2),
-            _buildRadioOption(widget.questionModel.txt3),
-            _buildRadioOption(widget.questionModel.txt4),
-          ],
+        if (cubit.showCorrect) {
+          _userAnswer ??= formControl.value as String?;
+          Future.microtask(() {
+            formControl.value = widget.questionModel.correctAnswer;
+          });
+        } else {
+          Future.microtask(() {
+            formControl.value = _userAnswer;
+          });
+        }
+      },
+      child: ReactiveForm(
+        formGroup: form,
+        child: Directionality(
+          textDirection: TextDirection.rtl,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                widget.questionModel.questionTxt,
+                style: const TextStyle(color: Colors.amber, fontSize: 20),
+              ),
+              const SizedBox(height: 16),
+              _buildRadioOption(widget.questionModel.txt1),
+              _buildRadioOption(widget.questionModel.txt2),
+              _buildRadioOption(widget.questionModel.txt3),
+              _buildRadioOption(widget.questionModel.txt4),
+            ],
+          ),
         ),
       ),
     );
   }
 
   Widget _buildRadioOption(String value) {
-    final  cubit = context.read <UiCubit>();
-
-
-    bool c ()
-    {
-      bool isCorrect = ( cubit.showCorrect  && value == widget.questionModel.correctAnswer );
-      isCorrect?
-      form.control(widget.questionModel.labelQuestion).value = value : null;
-      return isCorrect;
-    }
-
-    bool correctTrue ()
-    {
-      bool correctTrue = ( cubit.correctAnswerUser  &&
-          form.control(widget.questionModel.labelQuestion).value == widget.questionModel.correctAnswer ) ;
-     // ( value == widget.questionModel.correctAnswer );
-      return correctTrue;
-
-    }
-    bool selectText = ( cubit.correctAnswerUser  &&
-        form.control(widget.questionModel.labelQuestion).value == widget.questionModel.correctAnswer ) &&
-        ( value == widget.questionModel.correctAnswer );
-
-
-
-  /*  bool correctFalse ()
-    {
-      bool correctFalse = ( cubit.correctAnswerUser  &&
-          form.control(widget.questionModel.labelQuestion).value != widget.questionModel.correctAnswer );
-        //  (value != widget.questionModel.correctAnswer);
-      return correctFalse;
-    }
-
-  bool selectTextError =       ( cubit.correctAnswerUser  &&
-        form.control(widget.questionModel.labelQuestion).value != widget.questionModel.correctAnswer )&&
-    (value != widget.questionModel.correctAnswer);*/
-
-
-
-    bool isCorrect = cubit.showCorrect  && value == widget.questionModel.correctAnswer;
+    final cubit = context.read<UiCubit>();
     final formControl = form.control(widget.questionModel.labelQuestion);
-    final isSelected = formControl.value == value  ;
+    final isSelected = formControl.value == value;
+    final isCorrectValue = value == widget.questionModel.correctAnswer;
 
     Color textColor;
-    if (isCorrect || selectText ) {
+    Color? activeColor;
+
+    if (cubit.showCorrect && isCorrectValue) {
       textColor = Colors.green;
-    } else if (isSelected) {
+      activeColor = Colors.green;
+    } else if (cubit.correctAnswerUser) {
+      if (isSelected && isCorrectValue) {
+        textColor = Colors.green;
+        activeColor = Colors.green;
+      } else if (isSelected && !isCorrectValue) {
+        textColor = Colors.red;
+        activeColor = Colors.red;
+      } else {
+        textColor = Colors.grey;
+        activeColor = Colors.grey;
+      }
+    } else if (!cubit.showCorrect && isSelected) {
       textColor = Colors.amber;
-    }
-   // else if (selectTextError) {textColor = Colors.red;}
-    else {
+      activeColor = Colors.amber;
+    } else {
       textColor = Colors.grey;
+      activeColor = null;
     }
-
-
-Color ? activeColor ;
-    if ( c() || correctTrue()) {activeColor = Colors.green; }
-      else if (! (c() || correctTrue())){ activeColor = Colors.amber;}
-  //  else if (correctFalse()) {activeColor = Colors.red;}
-    else {activeColor = null ;}
-
-
-
 
     return SizedBox(
-      width: 200,
+      width: 220,
       child: ReactiveRadioListTile<String>(
         formControlName: widget.questionModel.labelQuestion,
         value: value,
-        activeColor:   activeColor
-      ,
+        activeColor: activeColor,
         title: Text(
           value,
-          style: TextStyle(
-            color: textColor,
-            fontWeight:  FontWeight.bold
-          ),
+          style: TextStyle(color: textColor, fontWeight: FontWeight.bold),
         ),
       ),
     );
