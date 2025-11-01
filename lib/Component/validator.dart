@@ -7,10 +7,12 @@ class CustomValidators {
   }
 
   static String? email(String? value) {
-    if (value == null || value.isEmpty) return 'البريد الإلكتروني مطلوب';
+    if (value == null || value.isEmpty) {
+      return 'البريد الإلكتروني مطلوب';
+    }
 
     final emailRegex = RegExp(
-      r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
+      r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,}$', 
       caseSensitive: false,
     );
 
@@ -21,7 +23,9 @@ class CustomValidators {
   }
 
   static String? password(String? value) {
-    if (value == null || value.isEmpty) return 'كلمة المرور مطلوبة';
+    if (value == null || value.isEmpty) {
+      return 'كلمة المرور مطلوبة';
+    }
 
     if (value.length < 6) {
       return 'كلمة المرور يجب أن تكون 6 أحرف على الأقل';

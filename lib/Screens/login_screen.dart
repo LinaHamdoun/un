@@ -20,9 +20,8 @@ class LogIn extends StatefulWidget {
 class _LogInState extends State<LogIn> {
   final formKey = GlobalKey<FormState>();
 
-  TextEditingController emailController = TextEditingController();
-
-  TextEditingController passwordController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
   late List<FocusNode> focusNodes = List.filled(2, FocusNode());
 
   @override
@@ -41,6 +40,7 @@ class _LogInState extends State<LogIn> {
         padding: EdgeInsets.symmetric(horizontal: 20.w),
         child: Form(
           key: formKey,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
           child: SingleChildScrollView(
             child: Column(
               children: [
@@ -55,22 +55,22 @@ class _LogInState extends State<LogIn> {
                 TextTop(text: 'جاهز لتحقيق أفضل النتائج؟سجل دخولك الآن'),
                 SizedBox(height: 20.h),
 
+                /// حقل البريد الإلكتروني
                 TextFieldComponent(
                   controller: emailController,
                   validator: (String? value) {
-                    CustomValidators.email(value);
-                    return null;
+                    return CustomValidators.email(value);
                   },
-                  text: 'البريد الالكتروني',
+                  text: 'البريد الإلكتروني',
                   focusNode: focusNodes[0],
                 ),
                 SizedBox(height: 20.h),
 
+                /// حقل كلمة المرور
                 TextFieldComponent(
                   controller: passwordController,
                   validator: (String? value) {
-                    CustomValidators.password(value);
-                    return null;
+                    return CustomValidators.password(value);
                   },
                   text: 'كلمة المرور',
                   focusNode: focusNodes[1],
@@ -84,9 +84,17 @@ class _LogInState extends State<LogIn> {
                 ),
                 SizedBox(height: 30.h),
 
+                /// زر تسجيل الدخول
                 ContainerComponent(
                   textContainer: 'طلب تسجيل الدخول',
-                  onTap: () {},
+                  onTap: () {
+                    if (formKey.currentState!.validate()) {
+                      print('تم التحقق بنجاح');
+                    } else {
+                      print('تحقق من الحقول');
+                    }
+
+                  },
                 ),
                 SizedBox(height: 5.h),
 
@@ -96,7 +104,7 @@ class _LogInState extends State<LogIn> {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => SignUp()),
+                      MaterialPageRoute(builder: (context) => const SignUp()),
                     );
                   },
                 ),

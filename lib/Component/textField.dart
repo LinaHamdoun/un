@@ -13,14 +13,10 @@ class TextFieldComponent extends StatelessWidget {
     required this.focusNode,
   });
 
-  final String text;
-
   final TextEditingController controller;
-
-  final String? Function(String? val)? validator;
-
-  final FocusNode focusNode;
-
+  final String text;
+  final String? Function(String?)? validator;
+  final FocusNode? focusNode;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -38,6 +34,11 @@ class TextFieldComponent extends StatelessWidget {
             border: buildOutlineInputBorder(1.w),
             enabledBorder: buildOutlineInputBorder(1.w),
             focusedBorder: buildOutlineInputBorder(2.w),
+            errorStyle: TextStyle(
+              color: Colors.redAccent,
+              fontSize: 13.sp,
+              height: 1.2,
+            ),
           ),
           validator: validator ?? (value) => CustomValidators.required(value),
           focusNode: focusNode,
