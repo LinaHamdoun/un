@@ -18,22 +18,23 @@ final class UiIconsToggled extends UiState {
   UiIconsToggled(this.isShow);
 }
 
-final class UiAnswersReset extends UiState {
-  final List<AnswerQuestion> listAnswerUser;
-
-  UiAnswersReset(this.listAnswerUser);
-}
-
-final class UiShowCorrectAnswers extends UiState {
-  final bool showCorrect;
-
-  UiShowCorrectAnswers(this.showCorrect);
-}
-
 final class UiAnswersRestart extends UiState {
   final List<AnswerQuestion> listAnswerUser;
 
   UiAnswersRestart(this.listAnswerUser);
+}
+
+final class UiShowCorrectAnswers extends UiState {
+ final   bool showCorrect;
+
+  UiShowCorrectAnswers(this.showCorrect);
+}
+
+final class UiAnswersReset extends UiState {
+  final List<AnswerQuestion> listAnswerUser;
+  final bool reset ;
+
+  UiAnswersReset(this.listAnswerUser, this.reset);
 }
 
 final class UiCorrectAnswerUser extends UiState {

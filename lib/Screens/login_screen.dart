@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:untitled/Screens/home_screen.dart';
 import 'package:untitled/Screens/signup_screen.dart';
 
 import '../Colors/colors_screens.dart';
@@ -84,7 +85,6 @@ class _LogInState extends State<LogIn> {
                 ),
                 SizedBox(height: 30.h),
 
-                /// زر تسجيل الدخول
                 ContainerComponent(
                   textContainer: 'طلب تسجيل الدخول',
                   onTap: () {
@@ -92,8 +92,8 @@ class _LogInState extends State<LogIn> {
                       print('تم التحقق بنجاح');
                     } else {
                       print('تحقق من الحقول');
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));
                     }
-
                   },
                 ),
                 SizedBox(height: 5.h),

@@ -1,6 +1,8 @@
 import 'dart:async';
+import 'dart:ui';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models/question_model.dart';
 
@@ -49,8 +51,6 @@ class UiCubit extends Cubit<UiState> {
 
   bool isFavorite(int index) => _favorites.contains(index);
 
-
-
   void toggleIcons() {
     isShow = !isShow;
     emit(UiIconsToggled(isShow));
@@ -68,19 +68,48 @@ class UiCubit extends Cubit<UiState> {
       print("${q.labelQuestion}: ${q.answerUser}");
     }
 
-    emit(UiAnswersReset(List.from(listAnswerUser)));
+    emit(UiAnswersRestart(List.from(listAnswerUser)));
   }
 
   void resetAll() {
     listAnswerUser.clear();
-    reset = !reset;
-    emit(UiAnswersRestart([]));
+    showCorrect = false;
+    correctAnswerUser = false;
+    reset = true;
+    emit(UiAnswersReset([], reset));
   }
 
   void toggleShowCorrect() {
-    showCorrect = !showCorrect;
+    showCorrect = true;
+    reset = false;
 
     emit(UiShowCorrectAnswers(showCorrect));
+  }
+
+  (Color textColor, Color? activeColor) getOptionColors({
+    required bool isSelected,
+    required bool isCorrectValue,
+  }) {
+
+    if (showCorrect && isCorrectValue) {
+      return (Colors.green, Colors.green);
+    }
+
+    if (correctAnswerUser) {
+      if (isSelected && isCorrectValue) return (Colors.green, Colors.green);
+      if (isSelected && !isCorrectValue) return (Colors.red, Colors.red);
+      return (Colors.grey, Colors.grey);
+    }
+
+    if (isSelected && reset) {
+      return (Colors.amber, Colors.amber);
+    }
+
+    if (isSelected) {
+      return (Colors.amber, Colors.amber);
+    }
+
+    return (Colors.grey, null);
   }
 
   void funCorrectAnswerUser() {

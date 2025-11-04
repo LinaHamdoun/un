@@ -28,28 +28,28 @@ class Questions extends StatelessWidget {
         backgroundColor: Colors.teal,
         body: Stack(
           children: [
-
             Padding(
               padding: const EdgeInsets.only(right: 15, left: 15, top: 10),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Row(children: [
-                    ContainerIcon(onTap: () {},
-                      valueRadius: 10.r,
-                      icon: Icon(Icons.arrow_back_ios,
-                        color: Colors.black,),
-                      color: Colors.white,),
-                    Spacer(flex: 1,),
-                    TextTop(text: 'قائمة الأسئلة و الدورات',),
-
-                  ],),
-
+                  Row(
+                    children: [
+                      ContainerIcon(
+                        onTap: () {},
+                        valueRadius: 10.r,
+                        icon: Icon(Icons.arrow_back_ios, color: Colors.black),
+                        color: Colors.white,
+                      ),
+                      Spacer(flex: 1),
+                      TextTop(text: 'قائمة الأسئلة و الدورات'),
+                    ],
+                  ),
 
                   BlocBuilder<TimerCubit, TimerState>(
-                      builder: (context, state) {
-                        if (state is TimerRunning && !state.isClosed) {
-                          final cubit = context.read<TimerCubit>();
+                    builder: (context, state) {
+                      if (state is TimerRunning && !state.isClosed) {
+                        final cubit = context.read<TimerCubit>();
 
                         return Align(
                           alignment: Alignment.topCenter,
@@ -59,7 +59,8 @@ class Questions extends StatelessWidget {
                               IconButton(
                                 onPressed: cubit.startTimer,
                                 icon: SvgPicture.asset(
-                                    'assets/Logo/play_icon.svg'),
+                                  'assets/Logo/play_icon.svg',
+                                ),
                               ),
                               const Spacer(flex: 25),
                               Text(
@@ -81,16 +82,11 @@ class Questions extends StatelessWidget {
                             ],
                           ),
                         );
+                      } else {
+                        return SizedBox();
                       }
-
-                        else{
-                          return SizedBox();
-                        }
-
-                      }
+                    },
                   ),
-
-
                 ],
               ),
             ),
@@ -99,19 +95,27 @@ class Questions extends StatelessWidget {
               child: BlocBuilder<UiCubit, UiState>(
                 builder: (context, state) {
                   final cubit = context.read<UiCubit>();
+                  bool correctAnswerUser = false ;
+                  if (state is UiCorrectAnswerUser )
+                    {
+                      correctAnswerUser = state.correctAnswerUser ;
+                    }
                   bool showCorrect = false;
                   if (state is UiShowCorrectAnswers) {
                     showCorrect = state.showCorrect;
                   }
+                  bool reset = false ;
+                  if (state is UiAnswersReset)
+                    {
+                      reset = state.reset ;
+                    }
 
                   return ContentListQuestion(
-                    key: ValueKey(cubit.reset),
-                    showCorrectAnswers: showCorrect,
+                    showCorrectAnswers: showCorrect, correctAnswerUser: correctAnswerUser, reset: reset,
                   );
                 },
               ),
             ),
-
 
             BlocBuilder<UiCubit, UiState>(
               builder: (context, state) {
@@ -145,9 +149,7 @@ class Questions extends StatelessWidget {
                         right: 0,
                         bottom: isShow ? gapY3 : 0,
                         heroTag: 'timer',
-                        onPressed: context
-                            .read<TimerCubit>()
-                            .showTimer,
+                        onPressed: context.read<TimerCubit>().showTimer,
                         image: 'assets/Logo/timer_icon.svg',
                         isShow: isShow,
                       ),

@@ -11,6 +11,7 @@ class FavoriteQuestions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cubit = context.read<UiCubit>();
     return Scaffold(
       appBar: AppBar(title: const Text("الأسئلة المفضلة")),
       body: BlocBuilder<UiCubit, UiState>(
@@ -25,7 +26,12 @@ class FavoriteQuestions extends StatelessWidget {
                   numberItem: listQuestion.length,
                   radioFormExample: RadioFormExample(
                     questionModel: listQuestion[index],
-                    showCorrectAnswers: context.read<UiCubit>().showCorrect,
+
+                    showCorrectAnswers: cubit.showCorrect,
+
+                    correctAnswerUser:cubit.correctAnswerUser,
+
+                    reset: cubit.reset ,
                   ),
                   click: true,
                   onStarToggle: () {

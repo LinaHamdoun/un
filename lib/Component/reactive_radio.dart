@@ -8,11 +8,13 @@ import '../models/question_model.dart';
 class RadioFormExample extends StatefulWidget {
   final QuestionModel questionModel;
   final bool showCorrectAnswers;
+  final bool correctAnswerUser ;
+  final bool reset ;
 
   const RadioFormExample({
     super.key,
     required this.questionModel,
-    required this.showCorrectAnswers,
+    required this.showCorrectAnswers, required this.correctAnswerUser, required this.reset,
   });
 
   @override
@@ -53,26 +55,39 @@ class _RadioFormExampleState extends State<RadioFormExample> {
 
   FormGroup buildForm() => FormGroup({
     widget.questionModel.labelQuestion: FormControl<String>(value: null),
+
   });
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<UiCubit, UiState>(
+  return
+    BlocListener<UiCubit, UiState>(
       listenWhen: (previous, current) {
-        return (current is UiShowCorrectAnswers);
+        return current is UiShowCorrectAnswers || current is UiAnswersReset;
       },
       listener: (context, state) {
         final cubit = context.read<UiCubit>();
-        final formControl = form.control(widget.questionModel.labelQuestion);
+        final control =
+        form.control(widget.questionModel.labelQuestion) as FormControl<
+            String?>?;
+        if (control == null) return;
 
-        if (cubit.showCorrect) {
-          _userAnswer ??= formControl.value as String?;
-          Future.microtask(() {
-            formControl.value = widget.questionModel.correctAnswer;
+        if (state is UiAnswersReset) {
+          _userAnswer = null;
+          control
+            ..markAsEnabled()
+            ..reset()
+            ..updateValueAndValidity();
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            control.updateValueAndValidity();
           });
-        } else {
-          Future.microtask(() {
-            formControl.value = _userAnswer;
+          return;
+        }
+
+        if (state is UiShowCorrectAnswers && state.showCorrect) {
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            control.value = widget.questionModel.correctAnswer;
+            control.updateValueAndValidity();
           });
         }
       },
@@ -98,37 +113,16 @@ class _RadioFormExampleState extends State<RadioFormExample> {
       ),
     );
   }
-
   Widget _buildRadioOption(String value) {
-    final cubit = context.read<UiCubit>();
     final formControl = form.control(widget.questionModel.labelQuestion);
     final isSelected = formControl.value == value;
     final isCorrectValue = value == widget.questionModel.correctAnswer;
 
-    Color textColor;
-    Color? activeColor;
-
-    if (cubit.showCorrect && isCorrectValue) {
-      textColor = Colors.green;
-      activeColor = Colors.green;
-    } else if (cubit.correctAnswerUser) {
-      if (isSelected && isCorrectValue) {
-        textColor = Colors.green;
-        activeColor = Colors.green;
-      } else if (isSelected && !isCorrectValue) {
-        textColor = Colors.red;
-        activeColor = Colors.red;
-      } else {
-        textColor = Colors.grey;
-        activeColor = Colors.grey;
-      }
-    } else if (!cubit.showCorrect && isSelected) {
-      textColor = Colors.amber;
-      activeColor = Colors.amber;
-    } else {
-      textColor = Colors.grey;
-      activeColor = null;
-    }
+    final cubit = context.read<UiCubit>();
+    final (textColor, activeColor) = cubit.getOptionColors(
+      isSelected: isSelected,
+      isCorrectValue: isCorrectValue,
+    );
 
     return SizedBox(
       width: 220,
