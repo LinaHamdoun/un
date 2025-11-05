@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class QuestionModel {
   final String txt1;
   final String txt2;
@@ -26,3 +28,11 @@ class AnswerQuestion {
 
 }
 
+extension NavigatorExtension on BuildContext {
+  Future<T?> pushPage<T>(Widget page) {
+    return Navigator.of(this).push(
+      MaterialPageRoute(builder: (_) => page),
+    );
+  }
+
+}

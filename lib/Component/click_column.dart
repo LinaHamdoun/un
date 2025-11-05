@@ -19,7 +19,7 @@ class ClickColumn extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-
+    
       child: Column(
         children: [
           Icon(

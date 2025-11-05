@@ -15,6 +15,7 @@ class UiCubit extends Cubit<UiState> {
   bool showCorrect = false;
   bool reset = false;
   bool correctAnswerUser = false;
+  int currentIndex = 0;
 
   UiCubit() : super(UiInitial()) {
     _loadFavorites();
@@ -116,4 +117,13 @@ class UiCubit extends Cubit<UiState> {
     correctAnswerUser = !correctAnswerUser;
     emit(UiCorrectAnswerUser(correctAnswerUser));
   }
+
+
+  void onItemTapped(int index) {
+
+
+    emit(OnItemTapped(index));
+  }
+
+
 }

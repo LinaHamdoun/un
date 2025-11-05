@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:untitled/Colors/colors_screens.dart';
+import 'package:untitled/Cubit/ui_cubit.dart';
+import 'package:untitled/models/question_model.dart';
 
 import '../Component/card_widget.dart';
 import '../Component/container_icon.dart';
@@ -34,12 +37,7 @@ class MyLibrary extends StatelessWidget {
                           children: [
                             ContainerIcon(
                               onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => HomeScreen(),
-                                  ),
-                                );
+                                context.pushPage(HomeScreen());
                               },
                               valueRadius: 12.r,
                               icon: Icon(Icons.keyboard_arrow_left, size: 25.h),
@@ -47,6 +45,7 @@ class MyLibrary extends StatelessWidget {
                             ),
                             SizedBox(width: 10.w),
                           ],
+
                         ),
                       ),
                       TextTop(text: 'مكتبتي', size: 23.sp),

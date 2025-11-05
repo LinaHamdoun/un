@@ -42,6 +42,14 @@ final class UiCorrectAnswerUser extends UiState {
 
   UiCorrectAnswerUser(this.correctAnswerUser);
 }
+final class  OnItemTapped extends UiState
+{
+ final  int currentIndex ;
+  OnItemTapped (this.currentIndex);
+
+
+}
+
 
 
 

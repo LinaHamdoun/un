@@ -38,7 +38,7 @@ class App extends StatelessWidget {
             ),
           );
         },
-        child: BarcodeScannerPage()
+        child: LogIn()
     );
   }
 }

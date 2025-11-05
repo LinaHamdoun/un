@@ -35,7 +35,7 @@ class BottomApp extends StatelessWidget {
                   onTap: () => onTap(0),
                   isSelected: current == 0,
                 ),
-                Spacer(flex: 1),
+                Spacer(flex: 1,),
                 ClickColumn(
                   nameScreen: 'Personal',
                   icon: Icons.person_rounded,

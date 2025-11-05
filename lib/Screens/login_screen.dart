@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:untitled/Screens/home_screen.dart';
 import 'package:untitled/Screens/signup_screen.dart';
+import 'package:untitled/models/question_model.dart';
 
 import '../Colors/colors_screens.dart';
 import '../Component/container.dart';
@@ -52,7 +53,6 @@ class _LogInState extends State<LogIn> {
                 TextTop(text: 'جاهز لتحقيق أفضل النتائج؟سجل دخولك الآن'),
                 SizedBox(height: 20.h),
 
-                /// حقل البريد الإلكتروني
                 TextFieldComponent(
                   controller: emailController,
                   validator: (String? value) => CustomValidators.email(value),
@@ -61,7 +61,6 @@ class _LogInState extends State<LogIn> {
                 ),
                 SizedBox(height: 20.h),
 
-                /// حقل كلمة المرور
                 TextFieldComponent(
                   controller: passwordController,
                   validator: (String? value) =>
@@ -82,15 +81,11 @@ class _LogInState extends State<LogIn> {
                   textContainer: 'طلب تسجيل الدخول',
                   onTap: () {
                     if (formKey.currentState!.validate()) {
-                      print('تم التحقق بنجاح');
+                      context.pushPage(HomeScreen());
 
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => HomeScreen()),
-                      );
-                    } else {
-                      print('تحقق من الحقول');
                     }
+                    context.pushPage(HomeScreen());
+
                   },
                 ),
                 SizedBox(height: 5.h),
@@ -98,12 +93,7 @@ class _LogInState extends State<LogIn> {
                 TextRow(
                   text: 'ليس لديك حساب؟',
                   textButton: 'سجل الآن',
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const SignUp()),
-                    );
-                  },
+                  onTap: ()=> context.pushPage(SignUp()),
                 ),
               ],
             ),
