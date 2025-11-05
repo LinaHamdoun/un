@@ -29,22 +29,18 @@ class _SignUpState extends State<SignUp> {
 
   TextEditingController confirmPasswordController = TextEditingController();
 
-  late List<FocusNode> focusNodes = List.generate(4, (index) => FocusNode());
-
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      focusNodes[0].requestFocus();
-    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Form(
       key: formKey,
+
       child: Scaffold(
-        backgroundColor: ColorsScreens.black,
+        backgroundColor: Colors.white,
         body: Padding(
           padding: EdgeInsets.symmetric(horizontal: 24.w),
           child: SingleChildScrollView(
@@ -59,24 +55,22 @@ class _SignUpState extends State<SignUp> {
 
                 TextFieldComponent(
                   controller: nameController,
-                  validator: (String? value) => null,
+                  validator: (String? value) => CustomValidators.name(value),
                   text: 'الاسم الكامل',
-                  focusNode: focusNodes[0],
                 ),
                 SizedBox(height: 10.h),
                 TextFieldComponent(
                   controller: emailController,
                   validator: (String? value) => CustomValidators.email(value),
                   text: 'البريد الالكتروني',
-                  focusNode: focusNodes[1],
                 ),
                 SizedBox(height: 10.h),
 
                 TextFieldComponent(
                   controller: passwordController,
-                  validator: (String? value) => CustomValidators.email(value),
+                  validator: (String? value) =>
+                      CustomValidators.password(value),
                   text: 'كلمة المرور',
-                  focusNode: focusNodes[2],
                 ),
                 SizedBox(height: 10.h),
 
@@ -85,20 +79,23 @@ class _SignUpState extends State<SignUp> {
                   validator: (String? value) =>
                       CustomValidators.confirmPassword(
                         value,
-                        confirmPasswordController.text,
+                        passwordController.text,
                       ),
                   text: 'تأكيد كلمة المرور',
-                  focusNode: focusNodes[3],
                 ),
                 SizedBox(height: 30.h),
 
                 ContainerComponent(
                   textContainer: 'تسجيل',
                   onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => CreateAccount()),
-                    );
+                    if (formKey.currentState!.validate()) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => CreateAccount(),
+                        ),
+                      );
+                    }
                   },
                 ),
                 SizedBox(height: 5.h),

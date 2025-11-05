@@ -10,9 +10,14 @@ import 'faivorate_questions.dart';
 class ContentListQuestion extends StatelessWidget {
   final bool showCorrectAnswers;
   final bool correctAnswerUser;
-  final bool reset ;
+  final bool reset;
 
-  const ContentListQuestion({super.key, this.showCorrectAnswers = false, required this.correctAnswerUser, required this.reset});
+  const ContentListQuestion({
+    super.key,
+    this.showCorrectAnswers = false,
+    required this.correctAnswerUser,
+    required this.reset,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +35,9 @@ class ContentListQuestion extends StatelessWidget {
               numberItem: listQuestion.length,
               radioFormExample: RadioFormExample(
                 showCorrectAnswers: showCorrectAnswers,
-                questionModel: listQuestion[index], correctAnswerUser: correctAnswerUser, reset: reset ,
+                questionModel: listQuestion[index],
+                correctAnswerUser: correctAnswerUser,
+                reset: reset,
               ),
               click: isFavorite,
               onStarToggle: () {

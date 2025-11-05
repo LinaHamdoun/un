@@ -10,13 +10,12 @@ class TextFieldComponent extends StatelessWidget {
     required this.text,
     required this.controller,
     required this.validator,
-    required this.focusNode,
   });
 
   final TextEditingController controller;
   final String text;
   final String? Function(String?)? validator;
-  final FocusNode? focusNode;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -29,6 +28,8 @@ class TextFieldComponent extends StatelessWidget {
         ),
         SizedBox(height: 4.h),
         TextFormField(
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+
           controller: controller,
           decoration: InputDecoration(
             border: buildOutlineInputBorder(1.w),
@@ -41,7 +42,6 @@ class TextFieldComponent extends StatelessWidget {
             ),
           ),
           validator: validator ?? (value) => CustomValidators.required(value),
-          focusNode: focusNode,
         ),
       ],
     );

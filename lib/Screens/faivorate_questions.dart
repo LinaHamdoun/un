@@ -29,9 +29,9 @@ class FavoriteQuestions extends StatelessWidget {
 
                     showCorrectAnswers: cubit.showCorrect,
 
-                    correctAnswerUser:cubit.correctAnswerUser,
+                    correctAnswerUser: cubit.correctAnswerUser,
 
-                    reset: cubit.reset ,
+                    reset: cubit.reset,
                   ),
                   click: true,
                   onStarToggle: () {

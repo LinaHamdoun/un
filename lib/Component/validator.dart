@@ -6,13 +6,34 @@ class CustomValidators {
     return null;
   }
 
+  static String? name(String? value) {
+    if (value == null || value.trim().isEmpty) {
+      return 'الاسم مطلوب';
+    }
+
+    final nameRegex = RegExp(r'^[\u0600-\u06FFa-zA-Z\s]+$');
+    if (!nameRegex.hasMatch(value)) {
+      return 'الاسم يجب أن يحتوي على أحرف فقط';
+    }
+
+    if (value.trim().split(' ').length < 2) {
+      return 'الرجاء كتابة الاسم الكامل (الاسم والكنية)';
+    }
+
+    if (value.trim().length > 40) {
+      return 'الاسم طويل جدًا، الرجاء إدخال اسم أقصر';
+    }
+
+    return null;
+  }
+
   static String? email(String? value) {
     if (value == null || value.isEmpty) {
       return 'البريد الإلكتروني مطلوب';
     }
 
     final emailRegex = RegExp(
-      r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,}$', 
+      r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,}$',
       caseSensitive: false,
     );
 

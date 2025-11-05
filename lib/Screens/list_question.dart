@@ -95,23 +95,23 @@ class Questions extends StatelessWidget {
               child: BlocBuilder<UiCubit, UiState>(
                 builder: (context, state) {
                   final cubit = context.read<UiCubit>();
-                  bool correctAnswerUser = false ;
-                  if (state is UiCorrectAnswerUser )
-                    {
-                      correctAnswerUser = state.correctAnswerUser ;
-                    }
+                  bool correctAnswerUser = false;
+                  if (state is UiCorrectAnswerUser) {
+                    correctAnswerUser = state.correctAnswerUser;
+                  }
                   bool showCorrect = false;
                   if (state is UiShowCorrectAnswers) {
                     showCorrect = state.showCorrect;
                   }
-                  bool reset = false ;
-                  if (state is UiAnswersReset)
-                    {
-                      reset = state.reset ;
-                    }
+                  bool reset = false;
+                  if (state is UiAnswersReset) {
+                    reset = state.reset;
+                  }
 
                   return ContentListQuestion(
-                    showCorrectAnswers: showCorrect, correctAnswerUser: correctAnswerUser, reset: reset,
+                    showCorrectAnswers: showCorrect,
+                    correctAnswerUser: correctAnswerUser,
+                    reset: reset,
                   );
                 },
               ),

@@ -8,13 +8,16 @@ import '../models/question_model.dart';
 class RadioFormExample extends StatefulWidget {
   final QuestionModel questionModel;
   final bool showCorrectAnswers;
-  final bool correctAnswerUser ;
-  final bool reset ;
+  final bool correctAnswerUser;
+
+  final bool reset;
 
   const RadioFormExample({
     super.key,
     required this.questionModel,
-    required this.showCorrectAnswers, required this.correctAnswerUser, required this.reset,
+    required this.showCorrectAnswers,
+    required this.correctAnswerUser,
+    required this.reset,
   });
 
   @override
@@ -55,21 +58,19 @@ class _RadioFormExampleState extends State<RadioFormExample> {
 
   FormGroup buildForm() => FormGroup({
     widget.questionModel.labelQuestion: FormControl<String>(value: null),
-
   });
 
   @override
   Widget build(BuildContext context) {
-  return
-    BlocListener<UiCubit, UiState>(
+    return BlocListener<UiCubit, UiState>(
       listenWhen: (previous, current) {
         return current is UiShowCorrectAnswers || current is UiAnswersReset;
       },
       listener: (context, state) {
         final cubit = context.read<UiCubit>();
         final control =
-        form.control(widget.questionModel.labelQuestion) as FormControl<
-            String?>?;
+            form.control(widget.questionModel.labelQuestion)
+                as FormControl<String?>?;
         if (control == null) return;
 
         if (state is UiAnswersReset) {
@@ -113,6 +114,7 @@ class _RadioFormExampleState extends State<RadioFormExample> {
       ),
     );
   }
+
   Widget _buildRadioOption(String value) {
     final formControl = form.control(widget.questionModel.labelQuestion);
     final isSelected = formControl.value == value;

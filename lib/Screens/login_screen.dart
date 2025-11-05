@@ -23,25 +23,21 @@ class _LogInState extends State<LogIn> {
 
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  late List<FocusNode> focusNodes = List.filled(2, FocusNode());
 
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      focusNodes[0].requestFocus();
-    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorsScreens.black,
+      backgroundColor: Colors.white,
+      //ColorsScreens.black,
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20.w),
         child: Form(
           key: formKey,
-          autovalidateMode: AutovalidateMode.onUserInteraction,
           child: SingleChildScrollView(
             child: Column(
               children: [
@@ -59,22 +55,19 @@ class _LogInState extends State<LogIn> {
                 /// حقل البريد الإلكتروني
                 TextFieldComponent(
                   controller: emailController,
-                  validator: (String? value) {
-                    return CustomValidators.email(value);
-                  },
+                  validator: (String? value) => CustomValidators.email(value),
+
                   text: 'البريد الإلكتروني',
-                  focusNode: focusNodes[0],
                 ),
                 SizedBox(height: 20.h),
 
                 /// حقل كلمة المرور
                 TextFieldComponent(
                   controller: passwordController,
-                  validator: (String? value) {
-                    return CustomValidators.password(value);
-                  },
+                  validator: (String? value) =>
+                      CustomValidators.password(value),
+
                   text: 'كلمة المرور',
-                  focusNode: focusNodes[1],
                 ),
                 SizedBox(height: 5.h),
 
@@ -90,9 +83,13 @@ class _LogInState extends State<LogIn> {
                   onTap: () {
                     if (formKey.currentState!.validate()) {
                       print('تم التحقق بنجاح');
+
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => HomeScreen()),
+                      );
                     } else {
                       print('تحقق من الحقول');
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));
                     }
                   },
                 ),
