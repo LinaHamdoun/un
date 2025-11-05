@@ -13,10 +13,13 @@ class FavoriteQuestions extends StatelessWidget {
   Widget build(BuildContext context) {
     final cubit = context.read<UiCubit>();
     return Scaffold(
-      appBar: AppBar(title: const Text("الأسئلة المفضلة")),
       body: BlocBuilder<UiCubit, UiState>(
         builder: (context, state) {
-          final favorites = state is FavoriteState ? state.favorites : <int>[];
+          List favorites = cubit.favorites;
+          if ( state is FavoriteState)  {
+
+            favorites = state.favorites ;
+          }
 
           if (favorites.isNotEmpty) {
             return ListView(
