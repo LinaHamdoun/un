@@ -26,21 +26,40 @@ class BottomApp extends StatelessWidget {
           Container(height: 2.h, color: Color(0xFFD4AF37)),
           Container(
             color: ColorsScreens.black,
-            padding: EdgeInsets.only(left: 24.w, right: 24.w, top: 10.h),
+            padding: EdgeInsets.only(left: 0, right: 0, top: 10.h),
             child: Row(
               children: [
-                ClickColumn(
-                  nameScreen: 'Main',
-                  icon: Icons.home,
+                GestureDetector(
+                  behavior: HitTestBehavior.opaque,
+
+
                   onTap: () => onTap(0),
-                  isSelected: current == 0,
+                
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 24 , right: 40),
+                    child: ClickColumn(
+                      nameScreen: 'Main',
+                      icon: Icons.home,
+                      onTap: () => onTap(0),
+                      isSelected: current == 0,
+                    ),
+                  ),
                 ),
                 Spacer(flex: 1,),
-                ClickColumn(
-                  nameScreen: 'Personal',
-                  icon: Icons.person_rounded,
+                GestureDetector(
                   onTap: () => onTap(1),
-                  isSelected: current == 1,
+                  behavior: HitTestBehavior.opaque,
+
+
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 24 , left: 40),
+                    child: ClickColumn(
+                      nameScreen: 'Personal',
+                      icon: Icons.person_rounded,
+                      onTap: () => onTap(1),
+                      isSelected: current == 1,
+                    ),
+                  ),
                 ),
               ],
             ),

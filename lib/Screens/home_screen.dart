@@ -16,7 +16,6 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenW = MediaQuery.of(context).size.width;
     final cubit = context.read<UiCubit>();
     int currentIndex  = cubit.currentIndex;
 
@@ -37,7 +36,7 @@ class HomeScreen extends StatelessWidget {
       backgroundColor: ColorsScreens.black,
       body: IndexedStack(index:currentIndex , children: screens),
       bottomNavigationBar: BottomApp(
-        screenW: screenW,
+        screenW: double.infinity,
         current: currentIndex,
         onTap: cubit.onItemTapped,
       ),

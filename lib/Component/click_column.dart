@@ -17,7 +17,8 @@ class ClickColumn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return
+      GestureDetector(
       onTap: onTap,
     
       child: Column(
