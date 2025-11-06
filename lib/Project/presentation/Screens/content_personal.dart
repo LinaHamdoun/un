@@ -25,7 +25,7 @@ class ContentPersonal extends StatelessWidget {
 
             ContainerMyOwn(
               children: [
-                ContainerMyOwn.buildPadding(''),
+                ContainerMyOwn.buildPadding('حسابي'),
                 TextAndIcon(
                   txt: 'المعلومات الشخصية',
                   icon: Icons.person_rounded,
@@ -52,7 +52,7 @@ class ContentPersonal extends StatelessWidget {
 
             ContainerMyOwn(
               children: [
-                ContainerMyOwn.buildPadding(''),
+                ContainerMyOwn.buildPadding('حول'),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [

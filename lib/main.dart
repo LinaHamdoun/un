@@ -5,15 +5,13 @@ import 'Project/presentation/Cubit/ui_cubit.dart';
 import 'Project/presentation/Screens/login_screen.dart';
 
 void main() {
-  runApp(BlocProvider(
-    create: (context) => UiCubit(),
-    child: App(),
-  ));
+  runApp(App());
 }
 
 
 class App extends StatelessWidget {
   const App({super.key});
+
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
@@ -21,11 +19,14 @@ class App extends StatelessWidget {
         minTextAdapt: true,
         splitScreenMode: true,
         builder: (context, child) {
-          return MaterialApp(
-            theme: ThemeData(
-                fontFamily: 'Tajawal', brightness: Brightness.light),
-            debugShowCheckedModeBanner: false,
-            home: child,
+          return BlocProvider(
+            create: (context) => UiCubit(),
+            child: MaterialApp(
+              theme: ThemeData(
+                  fontFamily: 'Tajawal', brightness: Brightness.light),
+              debugShowCheckedModeBanner: false,
+              home: child,
+            ),
           );
         },
         child: LogIn()
