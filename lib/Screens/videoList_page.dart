@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:untitled/Colors/colors_screens.dart';
 import 'package:untitled/Screens/physics_nawasat.dart';
+import 'package:untitled/models/question_model.dart';
 
 import '../Component/card_widget.dart';
 import '../Component/container_icon.dart';
@@ -33,14 +35,7 @@ class VideoListPage extends StatelessWidget {
                         child: Row(
                           children: [
                             ContainerIcon(
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => PhysicsNawasat(),
-                                  ),
-                                );
-                              },
+                              onTap: () => context.pushPage(PhysicsNawasat()),
                               valueRadius: 12.r,
                               icon: Icon(Icons.keyboard_arrow_left, size: 25.h),
                               color: Colors.white,
@@ -74,12 +69,9 @@ class VideoListPage extends StatelessWidget {
                             title: 'عنوان الفيديو',
                             subtitle: '20 دقيقة',
                             image: 'assets/Logo/p.jpg',
-                            containerIcon: ContainerIcon(
-                              onTap: () {},
-                              valueRadius: 777.r,
-                              icon: Icon(Icons.play_arrow_outlined, size: 10.h),
-                              color: Colors.amber,
-                            ),
+                            imageIcon: 'assets/Logo/playicon.svg',
+
+
 
                             onTap: () {},
                           ),
@@ -87,12 +79,8 @@ class VideoListPage extends StatelessWidget {
                             title: 'عنوان الفيديو',
                             subtitle: '20 دقيقة',
                             image: 'assets/Logo/p.jpg',
-                            containerIcon: ContainerIcon(
-                              onTap: () {},
-                              valueRadius: 777.r,
-                              icon: Icon(Icons.play_arrow_outlined, size: 10.h),
-                              color: Colors.amber,
-                            ),
+                            imageIcon: 'assets/Logo/playicon.svg',
+
 
                             onTap: () {},
                           ),
@@ -100,12 +88,9 @@ class VideoListPage extends StatelessWidget {
                             title: 'عنوان الفيديو',
                             subtitle: '20 دقيقة',
                             image: 'assets/Logo/p.jpg',
-                            containerIcon: ContainerIcon(
-                              onTap: () {},
-                              valueRadius: 777.r,
-                              icon: Icon(Icons.play_arrow_outlined, size: 10.h),
-                              color: Colors.amber,
-                            ),
+                            imageIcon: 'assets/Logo/playicon.svg',
+
+
 
                             onTap: () {},
                           ),
@@ -113,12 +98,7 @@ class VideoListPage extends StatelessWidget {
                             title: 'عنوان الفيديو',
                             subtitle: '20 دقيقة',
                             image: 'assets/Logo/p.jpg',
-                            containerIcon: ContainerIcon(
-                              onTap: () {},
-                              valueRadius: 777.r,
-                              icon: Icon(Icons.play_arrow_outlined, size: 10.h),
-                              color: Colors.amber,
-                            ),
+                            imageIcon: 'assets/Logo/lock.svg',
 
                             onTap: () {},
                           ),
@@ -126,12 +106,8 @@ class VideoListPage extends StatelessWidget {
                             title: 'عنوان الفيديو',
                             subtitle: '20 دقيقة',
                             image: 'assets/Logo/p.jpg',
-                            containerIcon: ContainerIcon(
-                              onTap: () {},
-                              valueRadius: 777.r,
-                              icon: Icon(Icons.play_arrow_outlined, size: 10.h),
-                              color: Colors.amber,
-                            ),
+                            imageIcon: 'assets/Logo/lock.svg',
+
 
                             onTap: () {},
                           ),

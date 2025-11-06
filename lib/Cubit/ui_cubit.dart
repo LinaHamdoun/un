@@ -1,7 +1,5 @@
 import 'dart:async';
-import 'dart:ui';
 import 'package:bloc/bloc.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models/question_model.dart';

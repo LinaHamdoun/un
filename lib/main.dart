@@ -29,13 +29,11 @@ class App extends StatelessWidget {
         minTextAdapt: true,
         splitScreenMode: true,
         builder: (context, child) {
-          return SafeArea(
-            child: MaterialApp(
-              theme: ThemeData(
-                  fontFamily: 'Tajawal', brightness: Brightness.light),
-              debugShowCheckedModeBanner: false,
-              home: child,
-            ),
+          return MaterialApp(
+            theme: ThemeData(
+                fontFamily: 'Tajawal', brightness: Brightness.light),
+            debugShowCheckedModeBanner: false,
+            home: child,
           );
         },
         child: LogIn()

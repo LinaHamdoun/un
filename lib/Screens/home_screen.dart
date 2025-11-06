@@ -34,7 +34,7 @@ class HomeScreen extends StatelessWidget {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       backgroundColor: ColorsScreens.black,
-      body: IndexedStack(index:currentIndex , children: screens),
+      body: SafeArea(child: IndexedStack(index:currentIndex , children: screens)),
       bottomNavigationBar: BottomApp(
         screenW: double.infinity,
         current: currentIndex,

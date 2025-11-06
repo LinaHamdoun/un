@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:untitled/Screens/physics_screen.dart';
+import 'package:untitled/models/question_model.dart';
 
 import '../Component/card_widget.dart';
 import '../Component/container_icon.dart';
@@ -49,34 +50,24 @@ class ContentHome extends StatelessWidget {
                   CardWidget(
                     title: 'فيزياء',
                     subtitle: '10 أبحاث',
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => PhysicsScreen(),
-                        ),
-                      );
-                    },
+                    onTap: () => context.pushPage(PhysicsScreen()),
                   ),
                   CardWidget(
                     title: 'رياضيات',
                     subtitle: '10 أبحاث',
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => PhysicsScreen(),
-                        ),
-                      );
-                    },
+                    onTap: () => context.pushPage(PhysicsScreen()),
                   ),
                   CardWidget(
                     title: 'كيمياء',
                     subtitle: '10 أبحاث',
-                    onTap: () {},
+                    onTap: () => context.pushPage(PhysicsScreen()),
                   ),
-                  CardWidget(title: 'علوم', subtitle: '10 أبحاث', onTap: () {}),
-                  CardWidget(title: 'عربي', subtitle: '10 أبحاث', onTap: () {}),
+                  CardWidget(title: 'علوم', subtitle: '10 أبحاث',                    onTap: () => context.pushPage(PhysicsScreen()),
+
+                  ),
+                  CardWidget(title: 'عربي', subtitle: '10 أبحاث',                     onTap: () => context.pushPage(PhysicsScreen()),
+
+                  ),
                 ],
               ),
             ),

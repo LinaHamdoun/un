@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:untitled/Colors/colors_screens.dart';
 
 import '../Component/container_icon.dart';
 
 class CardWidget extends StatelessWidget {
-  final ContainerIcon? containerIcon;
   final String? image;
 
   final String title;
@@ -13,14 +13,14 @@ class CardWidget extends StatelessWidget {
   final String subtitle;
 
   final void Function()? onTap;
+  final  String ? imageIcon ;
 
   const CardWidget({
     super.key,
-    this.containerIcon,
     this.image,
     required this.title,
     required this.subtitle,
-    required this.onTap,
+    required this.onTap,  this.imageIcon,
   });
 
   Widget _build(String? image) {
@@ -32,6 +32,17 @@ class CardWidget extends StatelessWidget {
     );
   }
 
+  Widget buildIcon (String ? imageIcon)
+  {
+    if(imageIcon == null)
+      {
+        return SizedBox();
+      }
+    else {
+      return SvgPicture.asset(imageIcon );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -39,7 +50,7 @@ class CardWidget extends StatelessWidget {
       child: GestureDetector(
         onTap: onTap,
         child: Container(
-          height: 85.h,
+          height: 75.h,
           decoration: BoxDecoration(
             color: ColorsScreens.black,
             border: Border.all(color: Colors.white),
@@ -52,7 +63,7 @@ class CardWidget extends StatelessWidget {
             children: [
               Padding(
                 padding: EdgeInsets.only(left: 20.w),
-                child: containerIcon ?? SizedBox(),
+                child: buildIcon(imageIcon)
               ),
               Spacer(flex: 1),
 

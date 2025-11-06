@@ -36,7 +36,7 @@ class BottomApp extends StatelessWidget {
                   onTap: () => onTap(0),
                 
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 24 , right: 40),
+                    padding: const EdgeInsets.only(left: 24 , right: 50),
                     child: ClickColumn(
                       nameScreen: 'Main',
                       icon: Icons.home,
@@ -52,7 +52,7 @@ class BottomApp extends StatelessWidget {
 
 
                   child: Padding(
-                    padding: const EdgeInsets.only(right: 24 , left: 40),
+                    padding: const EdgeInsets.only(right: 24 , left: 50),
                     child: ClickColumn(
                       nameScreen: 'Personal',
                       icon: Icons.person_rounded,

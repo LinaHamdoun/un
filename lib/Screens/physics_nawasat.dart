@@ -5,6 +5,7 @@ import 'package:untitled/Screens/physics_screen.dart';
 import 'package:untitled/Screens/summaries_screen.dart';
 import 'package:untitled/Screens/test_screen.dart';
 import 'package:untitled/Screens/videoList_page.dart';
+import 'package:untitled/models/question_model.dart';
 
 import '../Component/card_widget.dart';
 import '../Component/container_icon.dart';
@@ -37,14 +38,8 @@ class PhysicsNawasat extends StatelessWidget {
                         child: Row(
                           children: [
                             ContainerIcon(
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => PhysicsScreen(),
-                                  ),
-                                );
-                              },
+                              onTap: () => context.pushPage(PhysicsScreen()),
+
                               valueRadius: 12.r,
                               icon: Icon(Icons.keyboard_arrow_left, size: 25.h),
                               color: Colors.white,
@@ -77,50 +72,26 @@ class PhysicsNawasat extends StatelessWidget {
                           CardWidget(
                             title: 'الفيديوهات',
                             subtitle: '20 فيديو',
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => VideoListPage(),
-                                ),
-                              );
-                            },
+                            onTap: () => context.pushPage(VideoListPage()),
+
                           ),
                           CardWidget(
                             title: 'الملخصات النوط',
                             subtitle: '20 ملخص',
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => SummariesScreen(),
-                                ),
-                              );
-                            },
+                            onTap: () => context.pushPage(SummariesScreen()),
+
                           ),
                           CardWidget(
                             title: 'الأسئلة و الاختبارات',
                             subtitle: '20 دزوس',
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => TestScreen(),
-                                ),
-                              );
-                            },
+                            onTap: () => context.pushPage(TestScreen()),
+
                           ),
                           CardWidget(
                             title: 'المفضلة',
                             subtitle: '20 سؤال',
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => FavoriteQuestions(),
-                                ),
-                              );
-                            },
+                            onTap: () => context.pushPage(FavoriteQuestions()),
+
                           ),
                         ],
                       ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 
 import '../Colors/colors_screens.dart';
 
@@ -8,15 +9,15 @@ class ContainerIcon extends StatelessWidget {
   final double? valueRadius;
 
   final Icon? icon;
-
   final Color color;
+  final String ? image ;
 
   const ContainerIcon({
     super.key,
     required this.onTap,
     required this.valueRadius,
     required this.icon,
-    required this.color,
+    required this.color,  this.image,
   });
 
   @override
@@ -29,7 +30,7 @@ class ContainerIcon extends StatelessWidget {
           borderRadius: BorderRadius.circular(valueRadius!),
         ),
         padding: EdgeInsets.all(7.h),
-        child: icon,
+        child: icon ,
       ),
     );
   }
