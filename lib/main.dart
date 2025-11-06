@@ -1,16 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:untitled/Component/reactive_radio.dart';
-
-import 'Component/card_question.dart';
-import 'Cubit/ui_cubit.dart';
-import 'Screens/content_list_question.dart';
-import 'Screens/list_question.dart';
-import 'Screens/login_screen.dart';
-import 'Screens/scanner_screen.dart';
-import 'Screens/signup_screen.dart';
-import 'Screens/test_screen.dart';
+import 'Project/presentation/Cubit/ui_cubit.dart';
+import 'Project/presentation/Screens/login_screen.dart';
 
 void main() {
   runApp(BlocProvider(
