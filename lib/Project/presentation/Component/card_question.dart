@@ -27,7 +27,7 @@ class CardQuestion extends StatelessWidget {
       decoration: BoxDecoration(
         border: Border.all(color: Colors.grey),
         borderRadius: BorderRadius.circular(10),
-        color: ColorsScreens.grey,
+        color: Color(0xff262C37),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.end,

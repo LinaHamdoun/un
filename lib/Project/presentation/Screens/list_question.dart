@@ -29,24 +29,27 @@ class Questions extends StatelessWidget {
       child: Scaffold(
         backgroundColor: ColorsScreens.black,
         body: SafeArea(
-          child: Stack(
+          child: Stack (
             children: [
               Padding(
-                padding: const EdgeInsets.only(right: 15, left: 15, top: 10),
+                padding: const EdgeInsets.only(right: 5, left: 5, top: 10),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Row(
-                      children: [
-                        ContainerIcon(
-                          onTap: () => context.pushPage(TestScreen()),
-                          valueRadius: 10.r,
-                          icon: Icon(Icons.arrow_back_ios, color: Colors.black),
-                          color: Colors.white,
-                        ),
-                        Spacer(flex: 1),
-                        TextTop(text: 'قائمة الأسئلة و الدورات'),
-                      ],
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 10 , right: 10 , left: 10),
+                      child: Row(
+                        children: [
+                          ContainerIcon(
+                            onTap: () => context.pushPage(TestScreen()),
+                            valueRadius: 10.r,
+                            icon: Icon(Icons.arrow_back_ios, color: Colors.black),
+                            color: Colors.white,
+                          ),
+                          Spacer(flex: 1),
+                          TextTop(text: 'قائمة الأسئلة و الدورات'),
+                        ],
+                      ),
                     ),
           
                     BlocBuilder<TimerCubit, TimerState>(
@@ -91,35 +94,42 @@ class Questions extends StatelessWidget {
                         }
                       },
                     ),
+
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 10),
+                        child: BlocBuilder<UiCubit, UiState>(
+                          builder: (context, state) {
+                            bool correctAnswerUser = false;
+                            if (state is UiCorrectAnswerUser) {
+                              correctAnswerUser = state.correctAnswerUser;
+                            }
+                            bool showCorrect = false;
+                            if (state is UiShowCorrectAnswers) {
+                              showCorrect = state.showCorrect;
+                            }
+                            bool reset = false;
+                            if (state is UiAnswersReset) {
+                              reset = state.reset;
+                            }
+
+                            return ContentListQuestion(
+                              showCorrectAnswers: showCorrect,
+                              correctAnswerUser: correctAnswerUser,
+                              reset: reset,
+                            );
+                          },
+                        ),
+                      ),
+                    ),
+
+
+
                   ],
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 90),
-                child: BlocBuilder<UiCubit, UiState>(
-                  builder: (context, state) {
-                    bool correctAnswerUser = false;
-                    if (state is UiCorrectAnswerUser) {
-                      correctAnswerUser = state.correctAnswerUser;
-                    }
-                    bool showCorrect = false;
-                    if (state is UiShowCorrectAnswers) {
-                      showCorrect = state.showCorrect;
-                    }
-                    bool reset = false;
-                    if (state is UiAnswersReset) {
-                      reset = state.reset;
-                    }
-          
-                    return ContentListQuestion(
-                      showCorrectAnswers: showCorrect,
-                      correctAnswerUser: correctAnswerUser,
-                      reset: reset,
-                    );
-                  },
-                ),
-              ),
-          
+
+
               BlocBuilder<UiCubit, UiState>(
                 builder: (context, state) {
                   final cubit = context.read<UiCubit>();
@@ -172,7 +182,7 @@ class Questions extends StatelessWidget {
                           image: 'assets/Logo/sent_icon.svg',
                           isShow: isShow,
                         ),
-          
+
                         Positioned(
                           right: 0,
                           bottom: 0,
