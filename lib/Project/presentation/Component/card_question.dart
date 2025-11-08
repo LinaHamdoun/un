@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:untitled/Project/presentation/Colors/colors_screens.dart';
 import 'package:untitled/Project/presentation/Component/reactive_radio.dart';
 import 'package:untitled/Project/presentation/Component/star.dart';
 
@@ -26,7 +27,7 @@ class CardQuestion extends StatelessWidget {
       decoration: BoxDecoration(
         border: Border.all(color: Colors.grey),
         borderRadius: BorderRadius.circular(10),
-        color: Colors.white70,
+        color: ColorsScreens.grey,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.end,

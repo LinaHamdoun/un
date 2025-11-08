@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:untitled/Project/domain/models/question_model.dart';
+import 'package:untitled/Project/presentation/Colors/colors_screens.dart';
 
 import '../Component/container.dart';
 import '../Component/row_text.dart';
@@ -40,7 +41,7 @@ class _SignUpState extends State<SignUp> {
       key: formKey,
 
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: ColorsScreens.black,
         body: SafeArea(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 24.w),

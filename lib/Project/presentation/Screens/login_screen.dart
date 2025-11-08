@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:untitled/Project/domain/models/question_model.dart';
 import 'package:untitled/Project/presentation/Screens/signup_screen.dart';
+import '../Colors/colors_screens.dart';
 import '../Component/container.dart';
 import '../Component/row_text.dart';
 import '../Component/textField.dart';
@@ -31,8 +32,7 @@ class _LogInState extends State<LogIn> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      //ColorsScreens.black,
+      backgroundColor: ColorsScreens.black,
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 20.w),

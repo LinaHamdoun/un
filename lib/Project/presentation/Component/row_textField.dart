@@ -44,6 +44,7 @@ class _MyFormState extends State<MyForm> {
                 return KeyEventResult.ignored;
               },
               child: TextFormField(
+                style: TextStyle(color: Colors.white),
                 validator: (value) {},
 
                 keyboardType: TextInputType.number,

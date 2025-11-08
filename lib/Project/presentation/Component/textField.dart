@@ -29,6 +29,7 @@ class TextFieldComponent extends StatelessWidget {
         SizedBox(height: 4.h),
         TextFormField(
           autovalidateMode: AutovalidateMode.onUserInteraction,
+          style: TextStyle(color: Colors.white),
 
           controller: controller,
           decoration: InputDecoration(

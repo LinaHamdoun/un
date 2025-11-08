@@ -30,9 +30,26 @@ class AnswerQuestion {
 
 extension NavigatorExtension on BuildContext {
   Future<T?> pushPage<T>(Widget page) {
-    return Navigator.of(this).push(
-      MaterialPageRoute(builder: (_) => page),
+   return Navigator.push(
+      this,
+      PageRouteBuilder(
+        transitionDuration: Duration(milliseconds: 300),
+        pageBuilder: (_, __, ___) => page,
+        transitionsBuilder: (_, animation, __, child) {
+          return SlideTransition(
+            position: Tween(
+              begin: Offset(1.0, 0.0),
+              end: Offset.zero,
+            ).animate(CurvedAnimation(
+              parent: animation,
+              curve: Curves.easeOut,
+            )),
+            child: child,
+          );
+        },
+      ),
     );
+
   }
 
 }

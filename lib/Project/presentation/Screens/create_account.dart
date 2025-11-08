@@ -14,6 +14,7 @@ class CreateAccount extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: ColorsScreens.black,
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20.0.w),
         child: Column(

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:untitled/Project/domain/models/question_model.dart';
+import 'package:untitled/Project/presentation/Colors/colors_screens.dart';
 import 'package:untitled/Project/presentation/Screens/test_screen.dart';
 
 import '../Component/animation_icon.dart';
@@ -26,7 +27,7 @@ class Questions extends StatelessWidget {
     return BlocProvider(
       create: (context) => TimerCubit(),
       child: Scaffold(
-        backgroundColor: Colors.teal,
+        backgroundColor: ColorsScreens.black,
         body: SafeArea(
           child: Stack(
             children: [
@@ -68,6 +69,7 @@ class Questions extends StatelessWidget {
                                 Text(
                                   cubit.formatTime(state.seconds),
                                   style: const TextStyle(
+                                    color: Colors.white,
                                     fontSize: 35,
                                     fontWeight: FontWeight.w500,
                                   ),
@@ -75,11 +77,11 @@ class Questions extends StatelessWidget {
                                 const Spacer(flex: 3),
                                 IconButton(
                                   onPressed: cubit.resetTimer,
-                                  icon: const Icon(Icons.replay, size: 30),
+                                  icon: const Icon(Icons.replay, size: 30, color: Colors.white,),
                                 ),
                                 IconButton(
                                   onPressed: cubit.closeTimer,
-                                  icon: const Icon(Icons.close),
+                                  icon: const Icon(Icons.close, color: Colors.white,),
                                 ),
                               ],
                             ),
@@ -178,13 +180,14 @@ class Questions extends StatelessWidget {
                             elevation: 0,
                             shape: const CircleBorder(),
                             heroTag: 'main',
-                            backgroundColor: Colors.white,
+                            backgroundColor: ColorsScreens.amber,
                             onPressed: cubit.toggleIcons,
                             child: AnimatedSwitcher(
-                              duration: const Duration(milliseconds: 300),
+                              duration: const Duration(seconds: 1),
                               transitionBuilder: (child, anim) =>
                                   RotationTransition(turns: anim, child: child),
                               child: Icon(
+                                color: Colors.white,
                                 isShow ? Icons.close : Icons.dehaze_rounded,
                               ),
                             ),
