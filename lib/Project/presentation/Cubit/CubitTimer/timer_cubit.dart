@@ -14,8 +14,6 @@ class TimerCubit extends Cubit<TimerState> {
   TimerCubit() : super(TimerInitial()) ;
 
 
-
-
   void startTimer() {
     _timer?.cancel();
     _isClosed = false;
@@ -31,18 +29,19 @@ class TimerCubit extends Cubit<TimerState> {
     seconds = 0;
     startTimer();
   }
-
+//
   void closeTimer() {
     _timer?.cancel();
     seconds = 0;
     _isClosed = true;
     emit(TimerRunning(seconds, _isClosed));
   }
+  //
 
   void showTimer() {
     _timer?.cancel();
     seconds = 0;
-    _isClosed = false;
+    _isClosed = !_isClosed;
     emit(TimerRunning(seconds, _isClosed));
   }
 

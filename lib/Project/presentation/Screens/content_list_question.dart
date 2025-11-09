@@ -21,9 +21,15 @@ class ContentListQuestion extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cubit = context.read<UiCubit>();
     return BlocBuilder<UiCubit, UiState>(
       builder: (context, state) {
-        final favorites = state is FavoriteState ? state.favorites : <int>[];
+        List favorites = cubit.favorites;
+        if ( state is FavoriteState)  {
+
+          favorites = state.favorites ;
+        }
+
 
         return ListView.builder(
           itemCount: listQuestion.length,

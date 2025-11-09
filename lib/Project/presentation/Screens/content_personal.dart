@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:untitled/Project/domain/models/question_model.dart';
 
 import '../Component/container_myown.dart';
 import '../Component/text_top.dart';
@@ -34,12 +35,8 @@ class ContentPersonal extends StatelessWidget {
                 TextAndIcon(
                   txt: 'مكتبتي',
                   icon: Icons.library_books_rounded,
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => MyLibrary()),
-                    );
-                  },
+                  onTap: () => context.pushPage(MyLibrary()),
+
                 ),
                 TextAndIcon(
                   txt: 'تسجيل خروج',

@@ -113,7 +113,7 @@ class UiCubit extends Cubit<UiState> {
   }
 
   void funCorrectAnswerUser() {
-    correctAnswerUser = !correctAnswerUser;
+    correctAnswerUser = true;
     emit(UiCorrectAnswerUser(correctAnswerUser));
   }
 

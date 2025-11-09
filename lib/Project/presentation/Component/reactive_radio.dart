@@ -4,6 +4,7 @@ import 'package:reactive_forms/reactive_forms.dart';
 
 import '../../domain/models/question_model.dart';
 import '../Cubit/ui_cubit.dart';
+import 'list_question_com.dart';
 
 class RadioFormExample extends StatefulWidget {
   final QuestionModel questionModel;
@@ -33,13 +34,13 @@ class _RadioFormExampleState extends State<RadioFormExample> {
     super.initState();
     form = buildForm();
 
-    if (widget.showCorrectAnswers) {
+   /* if (widget.showCorrectAnswers) {
       Future.delayed(Duration.zero, () {
         form.control(widget.questionModel.labelQuestion).value =
             widget.questionModel.correctAnswer;
       });
       form.control(widget.questionModel.labelQuestion).markAsDisabled();
-    }
+    }*/
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       form.control(widget.questionModel.labelQuestion).valueChanges.listen((
@@ -57,7 +58,8 @@ class _RadioFormExampleState extends State<RadioFormExample> {
   }
 
   FormGroup buildForm() => FormGroup({
-    widget.questionModel.labelQuestion: FormControl<String>(value: null),
+  for (var q in listQuestion)
+  q.labelQuestion: FormControl<String>(),
   });
 
   @override
@@ -89,6 +91,7 @@ class _RadioFormExampleState extends State<RadioFormExample> {
           WidgetsBinding.instance.addPostFrameCallback((_) {
             control.value = widget.questionModel.correctAnswer;
             control.updateValueAndValidity();
+
           });
         }
       },
@@ -96,19 +99,29 @@ class _RadioFormExampleState extends State<RadioFormExample> {
         formGroup: form,
         child: Directionality(
           textDirection: TextDirection.rtl,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                widget.questionModel.questionTxt,
-                style: const TextStyle(color: Colors.amber, fontSize: 20),
-              ),
-              const SizedBox(height: 16),
-              _buildRadioOption(widget.questionModel.txt1),
-              _buildRadioOption(widget.questionModel.txt2),
-              _buildRadioOption(widget.questionModel.txt3),
-              _buildRadioOption(widget.questionModel.txt4),
-            ],
+          child: Padding(
+            padding: const EdgeInsets.only(top: 10),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Flexible(
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 10),
+                    child: Text(
+                      widget.questionModel.questionTxt,
+                    softWrap: true,
+                      style: const TextStyle(color: Colors.amber, fontSize: 20, )
+                    ),
+                  ),
+                ),
+                // SizedBox(height: 7),
+                _buildRadioOption(widget.questionModel.txt1),
+                _buildRadioOption(widget.questionModel.txt2),
+                _buildRadioOption(widget.questionModel.txt3),
+                _buildRadioOption(widget.questionModel.txt4),
+              ],
+            ),
           ),
         ),
       ),
@@ -128,13 +141,17 @@ class _RadioFormExampleState extends State<RadioFormExample> {
 
     return SizedBox(
       width: 220,
-      child: ReactiveRadioListTile<String>(
-        formControlName: widget.questionModel.labelQuestion,
-        value: value,
-        activeColor: activeColor,
-        title: Text(
-          value,
-          style: TextStyle(color: textColor, fontWeight: FontWeight.bold),
+      child: IgnorePointer(
+        ignoring: cubit.showCorrect ,
+        child: ReactiveRadioListTile<String>(
+          formControlName: widget.questionModel.labelQuestion,
+          value: value,
+          activeColor: activeColor,
+
+          title: Text(
+            value,
+            style: TextStyle(color: textColor, fontWeight: FontWeight.bold),
+          ),
         ),
       ),
     );

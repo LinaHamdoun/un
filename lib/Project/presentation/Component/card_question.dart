@@ -7,7 +7,7 @@ import 'package:untitled/Project/presentation/Component/star.dart';
 class CardQuestion extends StatelessWidget {
   final int numberItem;
   final int index;
-  final RadioFormExample radioFormExample;
+  final RadioFormExample radioFormExample ;
   final bool click;
   final VoidCallback onStarToggle;
 
@@ -30,21 +30,23 @@ class CardQuestion extends StatelessWidget {
         color: Color(0xff262C37),
       ),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.end,
 
         children: [
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.end,
 
             children: [
               Star(clickStar: click, onToggle: onStarToggle),
-              const Spacer(),
-              radioFormExample,
+             // const Spacer(flex: 1,),
+              Expanded(child: radioFormExample),
             ],
           ),
           Padding(
             padding: const EdgeInsets.only(right: 20, bottom: 5),
-            child: Text('السؤال  ${index + 1} من $numberItem'),
+            child: Text('السؤال  ${index + 1} من $numberItem', style: TextStyle(color: Colors.white),),
           ),
         ],
       ),
