@@ -41,7 +41,7 @@ class Questions extends StatelessWidget {
                       child: Row(
                         children: [
                           ContainerIcon(
-                            onTap: () => context.pushPage(TestScreen()),
+                            onTap: () =>  Navigator.pop(context),
                             valueRadius: 10.r,
                             icon: Icon(Icons.arrow_back_ios, color: Colors.black),
                             color: Colors.white,

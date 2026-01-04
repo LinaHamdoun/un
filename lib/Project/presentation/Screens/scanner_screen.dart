@@ -61,12 +61,7 @@ class _BarcodeScannerPageState extends State<BarcodeScannerPage> {
                       children: [
                         ContainerIcon(
                           onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => HomeScreen(),
-                              ),
-                            );
+                            Navigator.pop(context);
                           },
                           valueRadius: 300.r,
                           icon: Icon(

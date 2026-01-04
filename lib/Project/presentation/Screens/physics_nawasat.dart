@@ -38,7 +38,7 @@ class PhysicsNawasat extends StatelessWidget {
                         child: Row(
                           children: [
                             ContainerIcon(
-                              onTap: () => context.pushPage(PhysicsScreen()),
+                              onTap: () => Navigator.pop(context),
 
                               valueRadius: 12.r,
                               icon: Icon(Icons.keyboard_arrow_left, size: 25.h),
