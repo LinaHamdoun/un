@@ -11,6 +11,7 @@ import '../Component/text_top.dart';
 import '../Component/validator.dart';
 import 'create_account.dart';
 import 'login_screen.dart';
+import 'package:untitled/common/extensions/navigator_extension.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});

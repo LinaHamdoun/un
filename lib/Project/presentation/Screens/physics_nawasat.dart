@@ -11,6 +11,8 @@ import '../Component/card_widget.dart';
 import '../Component/container_icon.dart';
 import '../Component/text_top.dart';
 import 'faivorate_questions.dart';
+import 'package:untitled/common/extensions/navigator_extension.dart';
+
 
 class PhysicsNawasat extends StatelessWidget {
   const PhysicsNawasat({super.key});

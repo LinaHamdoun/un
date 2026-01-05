@@ -7,6 +7,7 @@ import '../Component/card_widget.dart';
 import '../Component/container_icon.dart';
 import '../Component/text_top.dart';
 import 'home_screen.dart';
+import 'package:untitled/common/extensions/navigator_extension.dart';
 
 class PhysicsScreen extends StatelessWidget {
   const PhysicsScreen({super.key});

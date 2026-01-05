@@ -10,6 +10,7 @@ import '../Component/textField.dart';
 import '../Component/text_top.dart';
 import '../Component/validator.dart';
 import 'home_screen.dart';
+import 'package:untitled/common/extensions/navigator_extension.dart';
 
 class LogIn extends StatefulWidget {
   const LogIn({super.key});
